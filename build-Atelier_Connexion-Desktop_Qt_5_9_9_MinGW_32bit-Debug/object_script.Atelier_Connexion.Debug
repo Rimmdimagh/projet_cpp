@@ -1,0 +1,12 @@
+INPUT(
+./debug\Matriel.o
+./debug\dialog.o
+./debug\historique.o
+./debug\main.o
+./debug\mainwindow.o
+./debug\connection.o
+./debug\smtp.o
+./debug\qrc_resource.o
+./debug\moc_mainwindow.o
+./debug\moc_smtp.o
+);

@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 #include "Matriel.h"
 #include <QMainWindow>
-#include "smtp.h"
 #include<QtCharts>
+
 
 namespace Ui {
 class MainWindow;
@@ -29,13 +29,26 @@ private slots:
     void on_stat_clicked();
 
 
-    void sendMail();
+    void on_pushButton_3_clicked();
+    void on_send_mail_clicked();
     void mailSent(QString);
-    void on_sendMail_clicked();
+
+   /* void on_mail_2_clicked();
+
+    void on_envoi_M_clicked();*/
+
+    void on_reset_2_clicked();
+
+    void on_reaficher_clicked();
+
+    void on_reset_3_clicked();
+
+    void on_envoi_M_clicked();
 
 private:
     Ui::MainWindow *ui;
      Matriel Mat;//pour pouvoir faire l appel a supp et modifier
+
 };
 
 #endif // MAINWINDOW_H

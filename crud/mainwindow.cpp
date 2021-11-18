@@ -6,24 +6,39 @@
 #include <QIntValidator>
 #include <QDateEdit>
 #include <QComboBox>
-#include "smtp.h"
 #include <QtCharts>
 #include <QChartView>
 #include <QLineSeries>
 #include<QTextStream>
+#include"smtp.h"
+#include <QPixmap>
+
 
 using namespace QtCharts;
+
+QString rep;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMaintenance/crud/historique.txt");
+          if (!file.open(QIODevice::ReadOnly))
+          {
+              QMessageBox::information(0,"info",file.errorString());
+          }
+          QTextStream in (&file);
+         ui->hist->setText(in.readAll());
+
     //CONTROLE DE SAISIE
     ui->id->setValidator(new QIntValidator (0, 99999999, this));
   //quantite
     ui->nom->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));//nom
     ui->reference->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));//reference
-    ui->mail->setValidator(new QRegExpValidator(QRegExp("\\b[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}\\b")));//mail
+          ui->id_supp->setValidator(new QIntValidator (0, 99999999, this));
+        ui->ID->setValidator(new QIntValidator (0, 99999999, this));
+        ui->panne->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));
 
     //COMBO BOX marque
     ui->marque->addItem(QIcon("//ken nheb nhut taswira"),"Brother");
@@ -31,15 +46,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->marque->addItem("MACOS");
     ui->marque->addItem("Asus");
     ui->marque->addItem("Samsung");
-
-
-
-
-
-
-
 //pour le remplir de tableau dans l iterface graphique
     ui->tab_mat->setModel(Mat.afficher());
+    //combobox rech
+   /* ui->comboBox->addItem("reference");
+    ui->comboBox->addItem("mail");
+    ui->comboBox->addItem("marque");*/
+
 
 
 
@@ -47,44 +60,110 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 
-
-
-
-
-
 //ajouter
 void MainWindow::on_pushButtonAjouter_clicked()
 {
+    QSqlQuery query;
+    if(ui->radioButton->isChecked()==true)
+        rep="marche";
+    else
+        if(ui->radioButton_2->isChecked()==true)
+            rep="panne";
+    query.prepare ("INSERT INTO MATRIEL (promotion) "
+                   "VALUES (rep)");
 
    int id=ui->id->text().toInt();//convertir l id de chaine de car vers un entier w baaed thutha
    QString nom=ui->nom->text();
    QString reference =ui->reference->text();
    QString marque=ui->marque->currentText();
 
+   QString etat=rep;
 
-   QString etat=ui->etat->text();
-int quantite=ui->quantite_2->text().toInt();
    QString mail=ui->mail->text();
    QDate miseFab=ui->miseFab->date();
    QDate miseFonc=ui->miseFonc->date();
+    Matriel m(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
+
+    if (id==NULL)
+         {
+
+             QMessageBox::information(this," ERREUR "," VEUILLEZ VERIFIER CHAMP id!!!!") ;
+             QMessageBox::critical(0, qApp->tr("Ajout"),
+
+                             qApp->tr("Probleme d'ajout"), QMessageBox::Cancel);
+
+         }
+
+      else if (nom==NULL)
+       {
+
+           QMessageBox::information(this," ERREUR "," VEUILLEZ VERIFIER CHAMP nom!!!!") ;
+           QMessageBox::critical(0, qApp->tr("Ajout"),
+
+                           qApp->tr("Probleme d'ajout"), QMessageBox::Cancel);
+
+       }
+    else if (reference==NULL)
+     {
+
+         QMessageBox::information(this," ERREUR "," VEUILLEZ VERIFIER CHAMP reference!!!!") ;
+         QMessageBox::critical(0, qApp->tr("Ajout"),
+
+                         qApp->tr("Probleme d'ajout"), QMessageBox::Cancel);
+
+     }
 
 
 
-    Matriel m(id,nom,reference,marque,etat,quantite,mail,miseFab,miseFonc);
+
+else{
 bool test=m.ajouter();//test de ajouter
-if (test)
-        {
-    //Actualiser de l affichage
-     ui->tab_mat->setModel(Mat.afficher());
-        QMessageBox:: information(nullptr, QObject::tr("OK"),
-                                           QObject::tr("Ajout effectué\n"
-                                                       "click cancel to exit."),QMessageBox::Cancel);
-        }
-    else
-        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
-                              QObject::tr("Ajout non effectué.\n"
-                                          "click Cancel to exit."),QMessageBox::Cancel);
+
+QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMaintenance/crud/historique.txt");//declaration d'un fichier
+        if(!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
+            return;
+
+        QTextStream cout(&file);
+if(test)
+{
+
+    QString message2="Vous avez ajouté un candidat\n";
+        cout << message2;
+        QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMaintenance/crud/historique.txt");
+       if (!file.open(QIODevice::ReadOnly))
+       {
+           QMessageBox::information(0,"info",file.errorString());
+       }
+       QTextStream in (&file);
+      ui->hist->setText(in.readAll());
+    ui->tab_mat->setModel(Mat.afficher());//rafraishissement
+    QMessageBox::information(nullptr, QObject::tr("matèriel ajouté"),
+                QObject::tr("successful.\n"
+                            "Click Cancel to exit."), QMessageBox::Cancel);
+
+
 }
+else
+    QMessageBox::critical(nullptr, QObject::tr("matèriel non ajouté"),
+                QObject::tr("failed.\n"
+                            "Click Cancel to exit."), QMessageBox::Cancel);
+
+
+
+
+
+    }
+ui->id->clear();
+ui->nom->clear();
+ui->reference->clear();
+ui->mail->clear();
+
+
+}
+
+
+
+
 
 
 
@@ -115,20 +194,10 @@ if (test)
                               QObject::tr("Suppression non effectué.\n"
                                           "click Cancel to exit."),QMessageBox::Cancel);
 
+
+ui->id_supp->clear();
 }
 
-/*//refresh
-void Matriel::refresh(){
-ui->tab_->setModel(tmprdv.afficher());
-ui->comboBox_2->setModel(tmprdv.afficherlist());
-ui->comboBox_3->setModel(tmprdv.afficherlist());
-ui->tabetudiant_2->setModel(tmprdv1.afficher());
-ui->comboBox->setModel(tmprdv1.afficherlist());
-ui->comboBox_4->setModel(tmprdv1.afficherlist());
-ui->id_combobox->setModel(tmprdv1.GetIdModelFournisseur());
-ui->combo_id->setModel(tmprdv1.GetIdModelFournisseur());
-}
-*/
 
 
 
@@ -136,28 +205,34 @@ ui->combo_id->setModel(tmprdv1.GetIdModelFournisseur());
 
 void MainWindow::on_modifier_clicked()
 {
+   QSqlQuery query;
+    if(ui->radioButton->isChecked()==true)
+        rep="marche";
+    else
+        if(ui->radioButton_2->isChecked()==true)
+            rep="panne";
+
+    query.prepare ("INSERT INTO matriel (etat) " "VALUES (rep)");
+
     int id=ui->id->text().toInt();
     QString nom=ui->nom->text();
     QString reference=ui->reference->text();
     QString marque=ui->marque->currentText();
-    QString etat=ui->etat->text();
-     int quantite=ui->quantite_2->text().toInt();
+    QString etat=rep;
     QString mail=ui->mail->text();
     QDate miseFab=ui->miseFab->date();
     QDate miseFonc=ui->miseFonc->date();
 
 
-        Matriel m(id,nom,reference,marque,etat,quantite,mail,miseFab,miseFonc);
-        bool test=m.modifier(id,nom,reference,marque,etat,quantite,mail,miseFab,miseFonc);
+        Matriel m(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
+        bool test=m.modifier(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
     if (test)
     {
         //actualiser
 
         ui->tab_mat->setModel(Mat.afficher());
 
-
-
-        QMessageBox::information(nullptr, QObject::tr("modifier une agence"),
+        QMessageBox::information(nullptr, QObject::tr("modifier matériel"),
                           QObject::tr("Matériel modifié.\n"
                                       "Click Cancel to exit."), QMessageBox::Cancel);
 
@@ -167,7 +242,10 @@ void MainWindow::on_modifier_clicked()
               QMessageBox::critical(nullptr, QObject::tr("modifier un matériel"),
                           QObject::tr("Erreur !.\n"
                                       "Click Cancel to exit."), QMessageBox::Cancel);
-
+    ui->id->clear();
+    ui->nom->clear();
+    ui->reference->clear();
+    ui->mail->clear();
     }
 
 
@@ -176,13 +254,13 @@ void MainWindow::on_recherche_clicked()
 {
 
     QString reference =ui->rech->text();
-    QString mail =ui->rech->text();
-    QString marque =ui->rech->text();
+    /*QString mail =ui->rech->text();
+    QString marque =ui->rech->text();*/
+
        ui->tab_mat->setModel(Mat.rechercher(reference));
-
-       ui->tab_mat->setModel(Mat.rechercher1(mail));
-       ui->tab_mat->setModel(Mat.rechercher2(marque));
-
+      /* ui->tab_mat->setModel(Mat.rechercher1(mail));
+       ui->tab_mat->setModel(Mat.rechercher2(marque));*/
+ui->rech->clear();
 
 }
 MainWindow::~MainWindow()
@@ -197,19 +275,24 @@ void MainWindow::on_stat_clicked()
 
          model->setQuery("select * from MATRIEL where MARQUE='Brother' ");
          int number1=model->rowCount();
+
          model->setQuery("select * from MATRIEL where MARQUE='HP' ");
          int number2=model->rowCount();
-         model->setQuery("select * from MATRIEL where MARQUE=' Samsung' ");
-         int number3=model->rowCount(); // calculer le nombre de voyage pour hammem lif
-         model->setQuery("select * from MATRIEL where MARQUE=' MACOS' ");
+
+         model->setQuery("select * from MATRIEL where MARQUE='Samsung' ");
+         int number3=model->rowCount();
+
+         model->setQuery("select * from MATRIEL where MARQUE='MACOS' ");
          int number4=model->rowCount();
-         model->setQuery("select * from MATRIEL where MARQUE=' Asus' ");
+
+         model->setQuery("select * from MATRIEL where MARQUE='Asus' ");
          int number5=model->rowCount();
 
 
          int total=number1+number2+number3+number4+number5;
+
          QString a = QString("brother  "+QString::number((number1*100)/total,'f',2)+"%" );
-         QString b = QString("HP "+QString::number((number2*100)/total,'f',2)+"%" );
+         QString b = QString("HP  "+QString::number((number2*100)/total,'f',2)+"%" );
          QString c = QString(" samsung "+QString::number((number3*100)/total,'f',2)+"%" );
          QString d = QString(" MACOS "+QString::number((number4*100)/total,'f',2)+"%" );
          QString e = QString(" Asus "+QString::number((number5*100)/total,'f',2)+"%" );
@@ -229,7 +312,6 @@ void MainWindow::on_stat_clicked()
          }
          if (number2!=0)
          {
-                  // Add label, explode and define brush for 2nd slice
                   QPieSlice *slice1 = series->slices().at(1);
                   //slice1->setExploded();
                   slice1->setLabelVisible();
@@ -259,37 +341,101 @@ void MainWindow::on_stat_clicked()
 
                  // Create the chart widget
                  QChart *chart = new QChart();
+
                  // Add data to chart with title and hide legend
                  chart->addSeries(series);
-                 chart->setTitle("Pourcentage Par MARQUE :Nombre Des quantite de marque "+ QString::number(total));
+                 chart->setTitle("Pourcentage Par MARQUE : Nombre Des quantite de marque "+ QString::number(total));
+
                  chart->legend()->hide();
                  // Used to display the chart
                  QChartView *chartView = new QChartView(chart);
                  chartView->setRenderHint(QPainter::Antialiasing);
-                 chartView->resize(1000,1000);
+                 chartView->resize(800,500);
                  chartView->show();
 
     }
 
-void MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toUShort());
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
 
-    smtp->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-void MainWindow::mailSent(QString status)
-{
-    if(status == "Message sent")
-        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-}
 
 /*
-void MainWindow::on_sendMail_clicked()
+void MainWindow::on_mail_2_clicked()
 {
 
-    connect(ui->sendMail, SIGNAL(clicked()),this, SLOT(sendMail()));
+    QItemSelectionModel *select = ui->tab_mat->selectionModel();
+
+    QString email_recipient = select->selectedRows(5).value(0).data().toString();
+    QString nom_recipient = select->selectedRows(1).value(0).data().toString();
+    QString prenom_recipient = select->selectedRows(2).value(0).data().toString();
+
+    QDialog * d=new Dialog(email_recipient,nom_recipient,prenom_recipient,this);
+    d->show();
+    d->exec();
+}
+
+*/
+
+
+void MainWindow::on_send_mail_clicked()
+{
+
+    Smtp* smtp = new Smtp("aura.forgetPass@gmail.com","Service100a","smtp.gmail.com",465);
+       connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+       smtp->sendMail("aura.forgetPass@gmail.com",ui->rcpt->text(),ui->subject->text(),ui->msg->toPlainText());
+}
+
+
+void MainWindow::on_reset_2_clicked()
+{
+
+
+        ui->id->setText("");
+        ui->nom->setText("");
+        ui->reference->setText("");
+        ui->mail->setText("");
+
+
+}
+
+void MainWindow::on_reaficher_clicked()
+{
+    ui->rech->setText("");
+    ui->tab_mat->setModel(Mat.afficher());
+
+}
+
+void MainWindow::on_reset_3_clicked()
+{
+    ui->rcpt->setText("");
+    ui->subject->setText("");
+    ui->msg->setPlainText("");
+
+
+}
+/*
+void MainWindow::on_envoi_M_clicked()
+{
+    QMessageBox msgBox;
+
+       int id=ui->ID->text().toInt();
+       QString panne=ui->panne->text();
+       QString cause=ui->cause->setPlainText();
+
+       Matriel CC(id,panne,cause);
+      int commande1=CC.verifiercolis(colis);//verifier est ce que le colis est affecte a une commande
+      int refclient1=CC.verifcommandeidclient(commande1);// si oui return id de ce client
+      int refclient=CC.verifcommandeidclient(commande); // return id de client de commande a affecter
+      bool test2=CC.verifiercommandeaff(commande);  //si cette commande est deja affecte ou pas
+               if(test2==false&&CC.verifiercolis(colis)==0)
+              {CC.affecteruncolis();
+                 msgBox.setText("Affectation avec succes.");}
+              else if(test2==false&&(refclient==refclient1))
+              {CC.affecteruncolis();
+               msgBox.setText("Affectation avec succes.");}
+               else
+               { msgBox.setText("Echec de Affectation ");
+               }
+         msgBox.exec();
 }
 */

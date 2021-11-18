@@ -1,4 +1,4 @@
-#ifndef SMTP_H
+/*#ifndef SMTP_H
 #define SMTP_H
 
 
@@ -6,22 +6,21 @@
 #include <QtNetwork/QSslSocket>
 #include <QString>
 #include <QTextStream>
-#include <QTableView>
 #include <QDebug>
 #include <QtWidgets/QMessageBox>
 #include <QByteArray>
+#include<QSqlQueryModel>
 
 
-
-class Smtp : public QObject
+class Mailing : public QObject
 {
     Q_OBJECT
 
 
 public:
-    Smtp( const QString &user, const QString &pass,
+    Mailing( const QString &user, const QString &pass,
           const QString &host, int port = 465, int timeout = 30000 );
-    ~Smtp();
+    ~Mailing();
 
     void sendMail( const QString &from, const QString &to,
                    const QString &subject, const QString &body );
@@ -52,4 +51,34 @@ private:
     int state;
 
 };
-#endif
+
+#endif // SMTP_H
+*/
+
+/*
+#ifndef NOTIFICATION_H
+#define NOTIFICATION_H
+
+#include <QSystemTrayIcon>
+#include<QString>
+class Mailing
+{
+public:
+    Mailing();
+    void notification_ajoutDevoir();
+    void notification_ajoutEnfant();
+    void notification_supprimerDevoir();
+    void notification_supprimerEnfant();
+    void notification_modifierDevoir();
+    void notification_modifierEnfant();
+    void mail_Enfant();
+
+
+
+
+
+
+};
+
+#endif // NOTIFICATION_H
+*/

@@ -7,8 +7,7 @@
 QT       += core gui sql
 QT       += core gui charts
 QT       += core gui network
-QT       += core gui network sql printsupport serialport charts \
-            multimedia multimediawidgets
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Atelier_Connexion
@@ -29,16 +28,20 @@ CONFIG += c++11
 
 SOURCES += \
     Matriel.cpp \
-    Smtp.cpp \
+    dialog.cpp \
+    historique.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    smtp.cpp
 
 HEADERS += \
     Matriel.h \
-    Smtp.h \
+    dialog.h \
+    historique.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    smtp.h
 
 FORMS += \
         mainwindow.ui
@@ -52,3 +55,6 @@ RESOURCES += \
     resource.qrc
 
 STATECHARTS +=
+
+DISTFILES += \
+    historique
