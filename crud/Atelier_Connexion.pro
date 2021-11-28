@@ -28,6 +28,7 @@ CONFIG += c++11
 
 SOURCES += \
     Matriel.cpp \
+    connexion.cpp \
     dialog.cpp \
     historique.cpp \
         main.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 
 HEADERS += \
     Matriel.h \
+    connexion.h \
     dialog.h \
     historique.h \
         mainwindow.h \

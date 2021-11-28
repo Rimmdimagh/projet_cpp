@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include "Matriel.h"
 #include <QMessageBox>
 #include <QDebug>
@@ -12,7 +11,7 @@
 #include<QTextStream>
 #include"smtp.h"
 #include <QPixmap>
-
+#include "ui_mainwindow.h"
 
 using namespace QtCharts;
 
@@ -22,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 
     QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMaintenance/crud/historique.txt");
           if (!file.open(QIODevice::ReadOnly))
@@ -36,11 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
   //quantite
     ui->nom->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));//nom
     ui->reference->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));//reference
-          ui->id_supp->setValidator(new QIntValidator (0, 99999999, this));
-        ui->ID->setValidator(new QIntValidator (0, 99999999, this));
-        ui->panne->setValidator(new QRegExpValidator (QRegExp("[a-z-A-Z]+"),this));
+    ui->id_supp->setValidator(new QIntValidator (0, 99999999, this));
 
     //COMBO BOX marque
+    ui->marque->addItem("choix de marque");
     ui->marque->addItem(QIcon("//ken nheb nhut taswira"),"Brother");
     ui->marque->addItem("HP");
     ui->marque->addItem("MACOS");
@@ -48,12 +47,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->marque->addItem("Samsung");
 //pour le remplir de tableau dans l iterface graphique
     ui->tab_mat->setModel(Mat.afficher());
-    //combobox rech
-   /* ui->comboBox->addItem("reference");
-    ui->comboBox->addItem("mail");
-    ui->comboBox->addItem("marque");*/
-
-
+    //combobox categorie
+     ui->categorie->addItem("choix de catégorie");
+      ui->categorie->addItem("matériel informatique");
+  ui->categorie->addItem("matériel burautique");
+  ui->categorie->addItem("matériel d'entretien");
+  ui->categorie->addItem("réfrégirateur");
 
 
 
@@ -76,13 +75,12 @@ void MainWindow::on_pushButtonAjouter_clicked()
    QString nom=ui->nom->text();
    QString reference =ui->reference->text();
    QString marque=ui->marque->currentText();
-
+   QString categorie=ui->categorie->currentText();
    QString etat=rep;
-
    QString mail=ui->mail->text();
    QDate miseFab=ui->miseFab->date();
    QDate miseFonc=ui->miseFonc->date();
-    Matriel m(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
+    Matriel m(id,nom,reference,marque,categorie,etat,mail,miseFab,miseFonc);
 
     if (id==NULL)
          {
@@ -127,7 +125,7 @@ QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMain
 if(test)
 {
 
-    QString message2="Vous avez ajouté un candidat\n";
+    QString message2="Vous avez ajouté un matériel\n";
         cout << message2;
         QFile file("C:/Users/HP/Downloads/smart_recrruiting_help_center_2A14-GestionMaintenance/crud/historique.txt");
        if (!file.open(QIODevice::ReadOnly))
@@ -218,14 +216,15 @@ void MainWindow::on_modifier_clicked()
     QString nom=ui->nom->text();
     QString reference=ui->reference->text();
     QString marque=ui->marque->currentText();
+    QString categorie=ui->categorie->currentText();
     QString etat=rep;
     QString mail=ui->mail->text();
     QDate miseFab=ui->miseFab->date();
     QDate miseFonc=ui->miseFonc->date();
 
 
-        Matriel m(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
-        bool test=m.modifier(id,nom,reference,marque,etat,mail,miseFab,miseFonc);
+        Matriel m(id,nom,reference,marque,categorie,etat,mail,miseFab,miseFonc);
+        bool test=m.modifier(id,nom,reference,marque,categorie,etat,mail,miseFab,miseFonc);
     if (test)
     {
         //actualiser
@@ -383,6 +382,9 @@ void MainWindow::on_send_mail_clicked()
        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
 
        smtp->sendMail("aura.forgetPass@gmail.com",ui->rcpt->text(),ui->subject->text(),ui->msg->toPlainText());
+
+
+
 }
 
 
@@ -437,5 +439,49 @@ void MainWindow::on_envoi_M_clicked()
                { msgBox.setText("Echec de Affectation ");
                }
          msgBox.exec();
+}
+*/
+
+
+
+void MainWindow::on_pushButton_clicked()
+{
+
+
+        int id=ui->id_combo->currentText().toInt();
+        int ide=ui->combo_person->currentText().toInt();
+
+
+        Matriel m1;
+        bool test=m1.modifier_e(id,ide);
+
+
+        if(test)
+        {
+            QMessageBox::information(nullptr, QObject::tr("Afecter une matriel"),
+                              QObject::tr("matriel Affecte.\n"
+                                          "Click Cancel to exit."), QMessageBox::Cancel);
+    }
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+   ui->id_combo->clear();
+   ui->id_combo->addItems(Mat.recherche_t());
+   ui->combo_person->clear();
+   ui->combo_person->addItems(Mat.recherche_t1());
+}
+/*
+void MainWindow::on_pushButton_deconnexio_clicked()
+{
+      ui->pushButton_deconnexio->hide();
+        ui->pushButton_quitter->hide();
+        emit clicLoginmatriel();
+
+}
+
+void MainWindow::on_pushButton_quitter_clicked()
+{
+     emit clicClosematriel();
 }
 */

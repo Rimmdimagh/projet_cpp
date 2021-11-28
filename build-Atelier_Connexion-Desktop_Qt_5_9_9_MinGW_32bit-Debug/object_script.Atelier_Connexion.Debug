@@ -1,5 +1,6 @@
 INPUT(
 ./debug\Matriel.o
+./debug\connexion.o
 ./debug\dialog.o
 ./debug\historique.o
 ./debug\main.o

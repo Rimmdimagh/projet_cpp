@@ -1,4 +1,4 @@
-#include "historique.h"
+/*#include "historique.h"
 
 historique::historique()
 {
@@ -88,3 +88,4 @@ QSqlQueryModel *historique::rechercheRapide(QString valeur)
 
     return  model;
 }
+*/

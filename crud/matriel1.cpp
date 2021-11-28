@@ -1,9 +1,12 @@
-#include "Matriel.h"
+#include "matriel1.h"
+#include "ui_matriel1.h"
+#include "QMessageBox"
 #include<QSqlQueryModel>//pour les models
 #include<QtDebug>//
 #include<QObject>//pour les objets
-//constructeur par defaut
-Matriel::Matriel()
+
+
+matriel1::matriel1()
 {
 id=0;
 nom="";
@@ -13,15 +16,10 @@ categorie="";
 etat="";
 
 mail="";
-
-
-
-
+/*miseFab="";
+miseFonc="";*/
 }
-
-
-//parametree
-Matriel::Matriel(int id_m,QString nom_m,QString reference_m,QString marque_m,QString categorie_m,QString etat_m,QString mail_m ,QDate miseFab_m,QDate miseFonc_m)
+matriel1::matriel1(int id_m,QString nom_m,QString reference_m,QString marque_m,QString categorie_m,QString etat_m,QString mail_m ,QDate miseFab_m,QDate miseFonc_m)
 {
     this->id=id_m;
     this->nom=nom_m;
@@ -36,30 +34,30 @@ Matriel::Matriel(int id_m,QString nom_m,QString reference_m,QString marque_m,QSt
 
 }
 
-int Matriel::get_id(){return id;}
-QString Matriel::get_nom(){return  nom;}
-QString Matriel::get_reference(){return reference;}
-QString Matriel::get_marque(){return marque;}
-QString Matriel::get_categorie(){return categorie;}
-QString Matriel::get_etat(){return etat;}
+int matriel1::get_id(){return id;}
+QString matriel1::get_nom(){return  nom;}
+QString matriel1::get_reference(){return reference;}
+QString matriel1::get_marque(){return marque;}
+QString matriel1::get_categorie(){return categorie;}
+QString matriel1::get_etat(){return etat;}
 
-QString Matriel::get_mail(){return mail;}
-QDate Matriel::get_miseFab(){return miseFab;}
-QDate Matriel::get_miseFonc(){return miseFonc;}
+QString matriel1::get_mail(){return mail;}
+QDate matriel1::get_miseFab(){return miseFab;}
+QDate matriel1::get_miseFonc(){return miseFonc;}
 
-void  Matriel::setid(int id) {this->id=id;}
-void  Matriel::set_nom(QString nom ){this->nom=nom;}
-void  Matriel::set_reference(QString reference){this->reference=reference;}
-void  Matriel::set_marque(QString marque){this->marque=marque;}
-void  Matriel::set_categorie(QString categorie){this->categorie=categorie;}
-void  Matriel::set_etat(QString etat) {this->etat=etat;}
-void  Matriel::set_mail(QString mail) {this->mail=mail;}
-void  Matriel::set_miseFab(QDate miseFab) {this->miseFab=miseFab;}
-void  Matriel::set_miseFonc(QDate miseFonc) {this->miseFab=miseFonc;}
+void  matriel1::setid(int id) {this->id=id;}
+void  matriel1::set_nom(QString nom ){this->nom=nom;}
+void  matriel1::set_reference(QString reference){this->reference=reference;}
+void  matriel1::set_marque(QString marque){this->marque=marque;}
+void  matriel1::set_categorie(QString categorie){this->categorie=categorie;}
+void  matriel1::set_etat(QString etat) {this->etat=etat;}
+void  matriel1::set_mail(QString mail) {this->mail=mail;}
+void  matriel1::set_miseFab(QDate miseFab) {this->miseFab=miseFab;}
+void  matriel1::set_miseFonc(QDate miseFonc) {this->miseFab=miseFonc;}
 
 
 
-bool Matriel::ajouter()
+bool matriel1::ajouter()
 {
 QSqlQuery query;//requette c est query de type sql (bd)
 
@@ -87,7 +85,7 @@ query.bindValue(":MISE_FONC",miseFonc);
 
 
 
-QSqlQueryModel* Matriel::afficher()
+QSqlQueryModel* matriel1::afficher()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
 
@@ -108,7 +106,7 @@ model->setHeaderData(8, Qt::Horizontal, QObject::tr("MISE_FONC"));
 
 
 //supprimer dans la base de donne
-bool Matriel::supprimer(int id )
+bool matriel1::supprimer(int id )
 {
 
 QSqlQuery query;
@@ -123,7 +121,7 @@ return    query.exec();
 
 //modifier
 
-bool Matriel::modifier(int id ,QString nom ,QString reference,QString marque,QString categorie,QString etat,QString mail ,QDate miseFab,QDate miseFonc)
+bool matriel1::modifier(int id ,QString nom ,QString reference,QString marque,QString categorie,QString etat,QString mail ,QDate miseFab,QDate miseFonc)
 {
 QSqlQuery query;
  QString IDString= QString::number(id);
@@ -147,7 +145,7 @@ return    query.exec();
 
 
 
-QSqlQueryModel * Matriel::rechercher(QString txt)
+QSqlQueryModel * matriel1::rechercher(QString txt)
   {
 
       QSqlQueryModel *model=new QSqlQueryModel();
@@ -167,8 +165,6 @@ QSqlQueryModel * Matriel::rechercher(QString txt)
 
       return model;
   }
-
-
 /*
 QSqlQueryModel *Matriel::rechercher1(QString txt)
   {
@@ -211,14 +207,7 @@ QSqlQueryModel *Matriel::rechercher2(QString txt)
 }
 
 */
-
-
-
-
-
-
-
-bool Matriel::modifier_e(int id,int ide)
+bool matriel1::modifier_e(int id,int ide)
 {
     QSqlQuery query;
     QString id_string= QString::number(id);
@@ -231,7 +220,7 @@ bool Matriel::modifier_e(int id,int ide)
 
 }
 
-QStringList Matriel::recherche_t(){
+QStringList matriel1::recherche_t(){
     QSqlQuery query;
     query.prepare("select ID from MATRIEL Where ETAT= 'panne' ");
     query.exec();
@@ -243,7 +232,7 @@ QStringList Matriel::recherche_t(){
     return list;
 
 }
-QStringList Matriel::recherche_t1(){
+QStringList matriel1::recherche_t1(){
     QSqlQuery query;
     query.prepare("select CIN from PERSON ");
     query.exec();
@@ -256,3 +245,7 @@ QStringList Matriel::recherche_t1(){
 
 }
 
+matriel1::~matriel1()
+{
+    delete ui;
+}

@@ -1,5 +1,6 @@
 INPUT(
 ./release\Matriel.o
+./release\connexion.o
 ./release\dialog.o
 ./release\historique.o
 ./release\main.o

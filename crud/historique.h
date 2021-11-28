@@ -1,5 +1,5 @@
 #ifndef HISTORIQUE_H
-#define HISTORIQUE_H
+/*#define HISTORIQUE_H
 #include <QString>
 #include <QSqlQuery>
 #include <QVariant>
@@ -28,3 +28,4 @@ private:
 
 
 #endif // HISTORIQUE_H
+*/
