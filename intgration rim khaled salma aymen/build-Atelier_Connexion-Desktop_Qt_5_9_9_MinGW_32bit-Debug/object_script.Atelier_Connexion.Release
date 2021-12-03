@@ -1,0 +1,16 @@
+INPUT(
+./release\arduino.o
+./release\entretien.o
+./release\formation.o
+./release\main.o
+./release\mainwindow.o
+./release\connection.o
+./release\matriel.o
+./release\personnel.o
+./release\qrcode.o
+./release\signup.o
+./release\smtp.o
+./release\qrc_img.o
+./release\moc_mainwindow.o
+./release\moc_smtp.o
+);
