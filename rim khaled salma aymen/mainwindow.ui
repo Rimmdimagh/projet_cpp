@@ -1976,7 +1976,7 @@ QProgressBar::chunk
        </palette>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QPushButton" name="pushButton">
@@ -7803,8 +7803,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">
-</string>
+             <string notr="true"/>
             </property>
            </widget>
            <widget class="QWidget" name="verticalLayoutWidget">
