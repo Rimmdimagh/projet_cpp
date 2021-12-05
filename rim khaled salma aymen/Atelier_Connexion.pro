@@ -34,6 +34,7 @@ CONFIG += c++11
 SOURCES += \
     arduino.cpp \
     entretien.cpp \
+    feedback.cpp \
     formation.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     arduino.h \
     dialog.h \
     entretien.h \
+    feedback.h \
     formation.h \
         mainwindow.h \
     connection.h \

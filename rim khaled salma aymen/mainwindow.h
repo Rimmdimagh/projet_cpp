@@ -202,6 +202,8 @@ void page10Widget();
 
   void on_pushButton_11_clicked();
 
+  void on_pushButton_16_clicked();
+
 private:
 
     QString ewCaesarCipher(QString plainText, int key);

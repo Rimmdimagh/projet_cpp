@@ -57,6 +57,7 @@
 #include<QString>
 #include<QStatusBar>
 #include "arduino.h"
+#include <QSound>
 using namespace qrcodegen;
 using namespace QtCharts;
 
@@ -67,6 +68,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    /***********************sound**************************/
+
+
+
+    QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/welcome.wav");
+    QTimer *timer = new QTimer(this);
+    timer->setSingleShot(true);
+    timer->setInterval(1500);
+    timer->start();
+    connect(timer, &QTimer::timeout, []() { QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/hello.wav"); });
+
+
+
+
+    /***************************************************/
     ui->tab_personnel->setModel(p.afficher());
     ui->tab_for->setModel(Etmp.afficher());
     ui->tab_mat->setModel(Mat.afficher());
@@ -2655,28 +2671,33 @@ void MainWindow::on_seconnecter_clicked()
 
     if(id_connexion == "admin" && password_connexion == "admin")
     {
-
         QMessageBox::information(this," Connexion ","Le nom d'utilisateur et le mot de passe sont corrects ") ;
+
+        QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 
        ui->stackedWidget->setCurrentWidget(ui->page);
 
 
     }
+
     else if(id_connexion != "admin" && password_connexion == "admin")
     {
         ui->id_con->setStyleSheet("color: red");
-        //Etmp.notifications("Connexion", "Username is not correct");
+        QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/voice-access-denied.wav");
+
     }
     else if(id_connexion == "admin" && password_connexion != "admin")
     {
         ui->id_con->setStyleSheet("color: red");
-       // Etmp.notifications("Connexion", "Password is not correct");
+        QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/voice-access-denied.wav");
+
     }
     else
     {
          ui->id_con->setStyleSheet("color: red");
          ui->pass_con->setStyleSheet("color: red");
-         //Etmp.notifications("Connexion", "Username or password is not correct");
+         QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/voice-access-denied.wav");
+
     }
 }
 //se diconnecter
@@ -2685,4 +2706,10 @@ void MainWindow::on_pushButton_11_clicked()
     ui->stackedWidget->setCurrentWidget(ui->page_11);
     ui->id_con->setText("");
     ui->pass_con->setText("");
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+
+    ui->stackedWidget->setCurrentWidget(ui->page);
 }
