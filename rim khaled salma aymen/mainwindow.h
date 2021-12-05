@@ -116,7 +116,7 @@ private slots:
   void page3Widget();
   void page8Widget();
 void page9Widget();
-
+void page10Widget();
   void on_pushButtonAjouter_2_clicked();
 
   void on_reset_2_clicked();
@@ -194,6 +194,14 @@ void page9Widget();
 
   void on_pb_acceuil_3_clicked();
 
+  void on_pushButton_13_clicked();
+
+  void on_pushButton_14_clicked();
+
+  void on_seconnecter_clicked();
+
+  void on_pushButton_11_clicked();
+
 private:
 
     QString ewCaesarCipher(QString plainText, int key);
@@ -240,7 +248,7 @@ private:
     QString RC4Encryption(std::vector< std::bitset<8> > msg_bytes, std::vector< std::bitset<8> > keys);
     std::vector< std::bitset<8> > keysGenerator(int msg_length, std::vector<int> s);
     std::vector< std::bitset<8> > bytesOfMessage(std::string msg);
-
+ int nombre;
 
    Formation Etmp;
     Ui::MainWindow *ui;
@@ -249,6 +257,7 @@ private:
     //Arduino Ard;
     QByteArray data;
     Matriel Mat;
+
 };
 
 #endif // MAINWINDOW_H

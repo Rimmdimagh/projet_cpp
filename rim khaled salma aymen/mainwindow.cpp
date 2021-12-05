@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QDebug>
 #include <QIntValidator>
@@ -18,18 +16,9 @@
 #include<QFileDialog>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <QSqlQueryModel>
-#include <qfiledialog.h>
-#include "qrcode.hpp"
 #include "personnel.h"
-#include<QFileDialog>
-#include<QTextDocument>
-#include<QTextStream>
 #include<QGraphicsView>
-#include<QtPrintSupport/QPrintDialog>
 #include<QPdfWriter>
-#include<QSqlQueryModel>
 #include<QSqlQuery>
 #include<QSystemTrayIcon>
 #include <QtNetwork/QAbstractSocket>
@@ -40,64 +29,22 @@
 #include<QJsonArray>
 #include <QDate>
 #include <QTime>
-#include<QMessageBox>
 #include<QSqlTableModel>
 #include<QItemSelectionModel>
 #include<QTableWidgetItem>
-#include <QtPrintSupport/QPrinter>
-#include <QDesktopServices>
 #include <QDesktopWidget>
 #include <QCoreApplication>
-#include <QCoreApplication>
-#include <QDebug>
-#include <QUrl>
-#include <QMessageBox>
-#include <QDebug>
-#include <QIntValidator>
 #include <QDateEdit>
 #include <QComboBox>
-#include<QTextStream>
 #include"smtp.h"
 #include "formation.h"
 #include "matriel.h"
-
-
-
-#include "mainwindow.h"
-#include <QMessageBox>
-#include <QDebug>
-#include <QIntValidator>
-#include <QDateEdit>
-#include <QComboBox>
-#include <QtCharts>
-#include <QChartView>
-#include <QLineSeries>
-#include<QTextStream>
 #include <QPixmap>
 #include <QMediaPlayer>
 #include<entretien.h>
-
-
-//salma
-
-
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <QTextDocument>
-#include <QTextStream>
-#include <QComboBox>
 #include <QTabWidget>
 #include <QObject>
-#include <QSqlTableModel>
-#include <QSqlQuery>
-#include <QDateEdit>
-#include <QComboBox>
-#include <QtPrintSupport/QPrintDialog>
-#include <QtPrintSupport/QPrinter>
 #include <QDialog>
-#include<QFileDialog>
-//#include <QSound>
 #include <QValidator>
 #include <QPropertyAnimation>
 #include <QEasingCurve>
@@ -106,23 +53,10 @@
 #include <QStateMachine>
 #include <QSignalTransition>
 #include <QPainter>
-
 #include "signup.h"
-
 #include<QString>
-//#include<QSound>
-#include<QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
 #include<QStatusBar>
-
-
-
 #include "arduino.h"
-
-
-
-
-
 using namespace qrcodegen;
 using namespace QtCharts;
 
@@ -140,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
    QObject::connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(page3Widget()) );
    QObject::connect(ui->pushButton_3,SIGNAL(clicked()),this, SLOT (page8Widget()) );
    QObject::connect(ui->pushButton_12,SIGNAL(clicked()),this, SLOT (page9Widget()) );
+   QObject::connect(ui->configuration,SIGNAL(clicked()),this, SLOT (page10Widget()) );
     
     QPixmap pix("C:/Users/HP/Downloads/intg/img");
     //ui->pic->setPixmap(pix.scaled(1000,1000,Qt::KeepAspectRatio));
@@ -194,6 +129,32 @@ MainWindow::MainWindow(QWidget *parent) :
         }
         QObject::connect(Ard.getserial(),SIGNAL(readyRead()),this,SLOT(detect()));
 */
+
+    // PARTIE CITATION ALEATOIRE
+
+    srand(time(NULL)); // Initialisation de la donnée seed
+    nombre = rand() % (10);
+    if(nombre==0)
+    ui->citation->setText("NOTRE VIE VAUT CE QU'ELLE NOUS A COUTE.");
+    else if(nombre==1)
+        ui->citation->setText("VOUS TROUVEREZ LA CLE DU SUCCES SOUS LE REVEILLE-MATIN.");
+    else if(nombre==2)
+        ui->citation->setText("Là OU SE TROUVE UNE VOLONTE, IL EXISTE UN CHEMIN.");
+    else if(nombre==3)
+        ui->citation->setText("LE FRUIT DU TRAVAIL EST LE PLUS DOUX DES PLAISIRS.");
+    else if(nombre==4)
+        ui->citation->setText("C'EST MAINTENANT LE TEMPS DE TRAVAILLER ENCORE PLUS DUR.");
+    else if(nombre==5)
+        ui->citation->setText("NE RÊVE PAS, FAIS-LE.");
+    else if(nombre==6)
+        ui->citation->setText("LES GAGNANTS TROUVENT LES MOYENS, LES PERDANTS DES EXCUSES.");
+    else if(nombre==7)
+        ui->citation->setText("LA MOTIVATION ET LE TRAVAIL SONT LA CLE DU SUCCES.");
+    else if(nombre==8)
+        ui->citation->setText("PRENEZ SOINS DE NOS CLIENTS.");
+    else if(nombre==9)
+        ui->citation->setText("LES PORTES DE L'AVENIR SONT OUVERTES A CEUX QUI SAVENT LES POUSSER.");
+
 }
 
 MainWindow::~MainWindow()
@@ -201,7 +162,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+/*************************************PERSONNEL******************************************/
 
 void MainWindow::on_pb_Ajouter_clicked()
 {
@@ -1455,6 +1416,7 @@ void MainWindow::on_send_mail_clicked()
        ui->msg->clear();
 
 }
+
 void MainWindow::on_pb_envoyer_clicked()
 {
 
@@ -1501,6 +1463,24 @@ void MainWindow::on_trie_dureeTravail_clicked()
     ui->tab_personnel->setModel(p->triDureeTravail());
 
 }
+void MainWindow::on_pushButton_7_clicked()
+{
+    QMediaPlayer *player = new QMediaPlayer;
+               player->setMedia(QUrl::fromLocalFile("C:/Users/HP/Downloads/intg/button.wav"));
+               player->setVolume(2000);
+               player->play();
+
+            ui->line_cin->setText("");
+            ui->line_age->setText("");
+            ui->line_nom->setText("");
+            ui->line_prenom->setText("");
+            ui->line_telephone->setText("");
+            ui->line_adresseMail->setText("");
+            ui->line_dureeTravail->setText("");
+            ui->line_adresse->setText("");
+
+}
+/**********************************FORMATION****************************************/
 void MainWindow::on_pushButtonAjouter_clicked()
 {
 
@@ -1899,7 +1879,20 @@ void MainWindow::on_reset_3_clicked()
 
 
 }
+void MainWindow::on_pushButton_5_clicked()
+{
+    QMediaPlayer *player = new QMediaPlayer;
+               player->setMedia(QUrl::fromLocalFile("C:/Users/HP/Downloads/intg/button.wav"));
+               player->setVolume(2000);
+               player->play();
 
+            ui->CODE_FORMATION->setText("");
+            ui->NOM_FOR->setText("");
+            ui->NOM_ENCADREUR->setText("");
+            ui->TYPE_FOR->setText("");
+            ui->DURE_FOR->setText("");
+}
+/***************************************Aller vers********************************/
 void MainWindow::page1Widget()
 {
     QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(page2Widget()) );
@@ -1927,8 +1920,12 @@ void MainWindow::page9Widget()
     QObject::connect(ui->pushButton_12,SIGNAL(clicked()),this,SLOT(page1Widget()) );
     ui->stackedWidget->setCurrentWidget(ui->page_9);
 }
-
-/**************************************matriel***********************************/
+void MainWindow::page10Widget()
+{
+    QObject::connect(ui->configuration,SIGNAL(clicked()),this,SLOT(page1Widget()) );
+    ui->stackedWidget->setCurrentWidget(ui->page_10);
+}
+/**************************************MAINTENANCE***********************************/
 
 void MainWindow::on_pushButtonAjouter_2_clicked()
 {
@@ -2312,42 +2309,6 @@ void MainWindow::on_tabWidget_currentChanged(int index){
 
 
 
-
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    QMediaPlayer *player = new QMediaPlayer;
-               player->setMedia(QUrl::fromLocalFile("C:/Users/HP/Downloads/intg/button.wav"));
-               player->setVolume(2000);
-               player->play();
-
-            ui->CODE_FORMATION->setText("");
-            ui->NOM_FOR->setText("");
-            ui->NOM_ENCADREUR->setText("");
-            ui->TYPE_FOR->setText("");
-            ui->DURE_FOR->setText("");
-}
-
-
-
-void MainWindow::on_pushButton_7_clicked()
-{
-    QMediaPlayer *player = new QMediaPlayer;
-               player->setMedia(QUrl::fromLocalFile("C:/Users/HP/Downloads/intg/button.wav"));
-               player->setVolume(2000);
-               player->play();
-
-            ui->line_cin->setText("");
-            ui->line_age->setText("");
-            ui->line_nom->setText("");
-            ui->line_prenom->setText("");
-            ui->line_telephone->setText("");
-            ui->line_adresseMail->setText("");
-            ui->line_dureeTravail->setText("");
-            ui->line_adresse->setText("");
-
-}
-
 /*
 
 void MainWindow::on_send_mail_2_clicked()
@@ -2359,7 +2320,7 @@ void MainWindow::on_send_mail_2_clicked()
 
 }
 */
-
+/***************************************CLOSE********************************************/
 void MainWindow::on_close_clicked()
 {
 
@@ -2402,7 +2363,8 @@ void MainWindow::on_close_4_clicked()
 }
 
 
-//salma
+
+/*****************************CANDIDATS****************************************************/
 /*
 void MainWindow::detect(){
    data=Ard.read_from_arduino();
@@ -2611,18 +2573,17 @@ void MainWindow::on_pb_imprimer_clicked()
 
 void MainWindow::on_pb_acceuil_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentWidget(ui->page);
+
+
 
 }
 
-void MainWindow::on_pb_acceuil_clicked()
-{
-ui->stackedWidget->setCurrentIndex(0);//prob
-}
+//aller a formation
 
 void MainWindow::on_pb_formation_clicked()
 {
-ui->stackedWidget->setCurrentIndex(1);
+ui->stackedWidget->setCurrentWidget(ui->page_2);
 }
 
 
@@ -2641,4 +2602,72 @@ void MainWindow::on_le_recherche_textChanged(const QString &arg1)
 void MainWindow::on_pb_acceuil_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);//prob
+}
+/****************************************************************************/
+
+//configuration mode nuit ou jour
+void MainWindow::on_pushButton_13_clicked()
+{
+    if(ui->mode->currentText()=="JOUR")
+    {
+
+
+            ui->page_10->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+
+            //ui->widget->setStyleSheet("background-color: rgb(197, 131, 98);");
+
+    }
+    else if(ui->mode->currentText()=="NUIT")
+    {
+            ui->page_10->setStyleSheet("background-color: rgb(40,40,40)");
+}
+
+}
+//aller a la page facebook
+void MainWindow::on_pushButton_14_clicked()
+{
+
+        QDesktopServices::openUrl(QUrl("https://www.facebook.com/", QUrl::TolerantMode));
+
+}
+//se connecter
+void MainWindow::on_seconnecter_clicked()
+{
+    QString id_connexion=ui->id_con->text();
+    QString password_connexion=ui->pass_con->text();
+
+    ui->id_con->setStyleSheet("color: black");
+    ui->pass_con->setStyleSheet("color: black");
+
+    if(id_connexion == "admin" && password_connexion == "admin")
+    {
+        //Etmp.notifications("Connexion", "Le nom d'utilisateur et le mot de passe sont corrects");
+        //ui->label_username->setText(ui->lineEdit_id_connexion->text());
+       ui->stackedWidget->setCurrentWidget(ui->page);
+
+
+    }
+    else if(id_connexion != "admin" && password_connexion == "admin")
+    {
+        ui->id_con->setStyleSheet("color: red");
+        //Etmp.notifications("Connexion", "Username is not correct");
+    }
+    else if(id_connexion == "admin" && password_connexion != "admin")
+    {
+        ui->id_con->setStyleSheet("color: red");
+       // Etmp.notifications("Connexion", "Password is not correct");
+    }
+    else
+    {
+         ui->id_con->setStyleSheet("color: red");
+         ui->pass_con->setStyleSheet("color: red");
+         //Etmp.notifications("Connexion", "Username or password is not correct");
+    }
+}
+//se diconnecter
+void MainWindow::on_pushButton_11_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_11);
+    ui->id_con->setText("");
+    ui->pass_con->setText("");
 }
