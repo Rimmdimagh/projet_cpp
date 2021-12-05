@@ -905,7 +905,7 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="page_11">
        <widget class="QStackedWidget" name="mp_oublier">
@@ -913,7 +913,7 @@
          <rect>
           <x>40</x>
           <y>40</y>
-          <width>751</width>
+          <width>1011</width>
           <height>371</height>
          </rect>
         </property>
@@ -921,106 +921,11 @@
          <number>0</number>
         </property>
         <widget class="QWidget" name="page_12">
-         <widget class="QLabel" name="label_7">
-          <property name="geometry">
-           <rect>
-            <x>320</x>
-            <y>70</y>
-            <width>131</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Connexion</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_61">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>140</y>
-            <width>61</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Identifiant</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_62">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>220</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Mot de passe</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="id_con">
-          <property name="geometry">
-           <rect>
-            <x>320</x>
-            <y>140</y>
-            <width>113</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="pass_con">
-          <property name="geometry">
-           <rect>
-            <x>320</x>
-            <y>220</y>
-            <width>113</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="seconnecter">
-          <property name="geometry">
-           <rect>
-            <x>620</x>
-            <y>172</y>
-            <width>131</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Se connecter</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="citation">
-          <property name="geometry">
-           <rect>
-            <x>140</x>
-            <y>290</y>
-            <width>561</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Citation de jour : </string>
-          </property>
-         </widget>
          <widget class="QLabel" name="label_63">
           <property name="geometry">
            <rect>
-            <x>210</x>
-            <y>10</y>
+            <x>250</x>
+            <y>0</y>
             <width>401</width>
             <height>41</height>
            </rect>
@@ -1035,53 +940,185 @@
            <string>Space Recruitong Center</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_passwordforgot">
+         <widget class="QLabel" name="label_68">
           <property name="geometry">
            <rect>
-            <x>290</x>
-            <y>250</y>
-            <width>171</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border-radius:15px 10px 15px 10px;
-text-decoration: underline;
-font: 14pt &quot;Gabriola&quot;;
-color: rgb(0, 0, 255);
-</string>
-          </property>
-          <property name="text">
-           <string>Mot de pass oublié?</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_67">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>101</width>
-            <height>71</height>
+            <x>0</x>
+            <y>90</y>
+            <width>371</width>
+            <height>281</height>
            </rect>
           </property>
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="img.qrc">:/users.png</pixmap>
+           <pixmap resource="img.qrc">:/logo.jpg</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
           </property>
-          <property name="wordWrap">
-           <bool>false</bool>
+         </widget>
+         <widget class="Line" name="line_2">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>80</y>
+            <width>16</width>
+            <height>431</height>
+           </rect>
           </property>
-          <property name="openExternalLinks">
-           <bool>false</bool>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_9">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>120</y>
+            <width>601</width>
+            <height>321</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>Connexion</string>
+          </property>
+          <widget class="QLineEdit" name="id_con">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>50</y>
+             <width>131</width>
+             <height>20</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="pass_con">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>110</y>
+             <width>131</width>
+             <height>20</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="seconnecter">
+           <property name="geometry">
+            <rect>
+             <x>410</x>
+             <y>70</y>
+             <width>131</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Se connecter</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_61">
+           <property name="geometry">
+            <rect>
+             <x>60</x>
+             <y>50</y>
+             <width>111</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Identifiant</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_passwordforgot">
+           <property name="geometry">
+            <rect>
+             <x>170</x>
+             <y>140</y>
+             <width>171</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius:15px 10px 15px 10px;
+text-decoration: underline;
+font: 14pt &quot;Gabriola&quot;;
+color: rgb(0, 0, 255);
+</string>
+           </property>
+           <property name="text">
+            <string>Mot de pass oublié?</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="citation">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>190</y>
+             <width>571</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Citation de jour : </string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_62">
+           <property name="geometry">
+            <rect>
+             <x>50</x>
+             <y>110</y>
+             <width>131</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Mot de passe</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_67">
+           <property name="geometry">
+            <rect>
+             <x>400</x>
+             <y>120</y>
+             <width>101</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="img.qrc">:/users.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
          </widget>
         </widget>
         <widget class="QWidget" name="page_13"/>
@@ -1094,8 +1131,8 @@ color: rgb(0, 0, 255);
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>100</y>
+          <x>100</x>
+          <y>230</y>
           <width>271</width>
           <height>61</height>
          </rect>
@@ -1111,12 +1148,22 @@ color: rgb(0, 0, 255);
         <property name="text">
          <string>formation </string>
         </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/For.png</normaloff>:/For.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>50</height>
+         </size>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_2">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>190</y>
+          <x>100</x>
+          <y>80</y>
           <width>271</width>
           <height>61</height>
          </rect>
@@ -1132,12 +1179,22 @@ color: rgb(0, 0, 255);
         <property name="text">
          <string>Personel</string>
         </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/per.png</normaloff>:/per.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>50</height>
+         </size>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_3">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>290</y>
+          <x>430</x>
+          <y>80</y>
           <width>271</width>
           <height>61</height>
          </rect>
@@ -1155,7 +1212,7 @@ color: rgb(0, 0, 255);
         </property>
         <property name="icon">
          <iconset resource="img.qrc">
-          <normaloff>:/Untitled-1.png</normaloff>:/Untitled-1.png</iconset>
+          <normaloff>:/maint.png</normaloff>:/maint.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -1167,9 +1224,9 @@ color: rgb(0, 0, 255);
        <widget class="QPushButton" name="close">
         <property name="geometry">
          <rect>
-          <x>740</x>
+          <x>880</x>
           <y>20</y>
-          <width>221</width>
+          <width>141</width>
           <height>51</height>
          </rect>
         </property>
@@ -1179,13 +1236,17 @@ color: rgb(0, 0, 255);
         <property name="text">
          <string>QUITER</string>
         </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/quitter.png</normaloff>:/quitter.png</iconset>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_11">
         <property name="geometry">
          <rect>
-          <x>740</x>
+          <x>880</x>
           <y>70</y>
-          <width>221</width>
+          <width>141</width>
           <height>51</height>
          </rect>
         </property>
@@ -1195,25 +1256,45 @@ color: rgb(0, 0, 255);
         <property name="text">
          <string>DICONNEXION</string>
         </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/diconnexion.png</normaloff>:/diconnexion.png</iconset>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_12">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>370</y>
+          <x>100</x>
+          <y>160</y>
           <width>271</width>
-          <height>61</height>
+          <height>51</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>Entretiens</string>
+         <string>Candidat</string>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/candidat.png</normaloff>:/candidat.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>39</height>
+         </size>
         </property>
        </widget>
        <widget class="QPushButton" name="configuration">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>452</y>
+          <x>270</x>
+          <y>330</y>
           <width>271</width>
           <height>61</height>
          </rect>
@@ -1221,18 +1302,38 @@ color: rgb(0, 0, 255);
         <property name="text">
          <string>Configuration</string>
         </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/canfiguration.png</normaloff>:/canfiguration.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>50</height>
+         </size>
+        </property>
        </widget>
        <widget class="QPushButton" name="pushButton_14">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>31</width>
-          <height>23</height>
+          <width>41</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/dacebook.png</normaloff>:/dacebook.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>38</height>
+         </size>
         </property>
        </widget>
        <widget class="QLabel" name="label_3">
@@ -1248,43 +1349,50 @@ color: rgb(0, 0, 255);
          <string>page facebook</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_15">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>530</y>
-          <width>271</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Feedback</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="pushButton_17">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>100</y>
+          <x>430</x>
+          <y>230</y>
           <width>271</width>
-          <height>61</height>
+          <height>51</height>
          </rect>
         </property>
         <property name="text">
          <string>Feedback</string>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/feedb.png</normaloff>:/feedb.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>50</height>
+         </size>
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_18">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>192</y>
-          <width>291</width>
-          <height>61</height>
+          <x>430</x>
+          <y>160</y>
+          <width>271</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="text">
          <string>Candidature</string>
+        </property>
+        <property name="icon">
+         <iconset resource="img.qrc">
+          <normaloff>:/candidature.png</normaloff>:/candidature.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>50</height>
+         </size>
         </property>
        </widget>
       </widget>
@@ -7013,7 +7121,7 @@ border:2px solid #fff;
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_17">
          <attribute name="title">
@@ -7113,6 +7221,10 @@ border:2px solid #fff;
               <property name="text">
                <string>Valider</string>
               </property>
+              <property name="icon">
+               <iconset resource="img.qrc">
+                <normaloff>:/ajouter.png</normaloff>:/ajouter.png</iconset>
+              </property>
              </widget>
             </item>
             <item>
@@ -7120,12 +7232,20 @@ border:2px solid #fff;
               <property name="text">
                <string>Afficher</string>
               </property>
+              <property name="icon">
+               <iconset resource="img.qrc">
+                <normaloff>:/reafficher.png</normaloff>:/reafficher.png</iconset>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pb_modifier_2">
               <property name="text">
                <string>Modifier</string>
+              </property>
+              <property name="icon">
+               <iconset resource="img.qrc">
+                <normaloff>:/modifier.png</normaloff>:/modifier.png</iconset>
               </property>
              </widget>
             </item>
@@ -7355,6 +7475,10 @@ border:2px solid #fff;
            <property name="text">
             <string>Ajouter</string>
            </property>
+           <property name="icon">
+            <iconset resource="img.qrc">
+             <normaloff>:/ajouter.png</normaloff>:/ajouter.png</iconset>
+           </property>
            <property name="iconSize">
             <size>
              <width>30</width>
@@ -7373,6 +7497,10 @@ border:2px solid #fff;
            </property>
            <property name="text">
             <string>Supprimer</string>
+           </property>
+           <property name="icon">
+            <iconset resource="img.qrc">
+             <normaloff>:/supprimer.png</normaloff>:/supprimer.png</iconset>
            </property>
           </widget>
           <widget class="QLabel" name="entretien_2">
@@ -7414,6 +7542,10 @@ border:2px solid #fff;
            </property>
            <property name="text">
             <string>Modifier</string>
+           </property>
+           <property name="icon">
+            <iconset resource="img.qrc">
+             <normaloff>:/modifier.png</normaloff>:/modifier.png</iconset>
            </property>
           </widget>
           <widget class="QComboBox" name="cb_tri">
@@ -7815,6 +7947,16 @@ border:2px solid #fff;
            </property>
            <property name="text">
             <string>Trier</string>
+           </property>
+           <property name="icon">
+            <iconset resource="img.qrc">
+             <normaloff>:/trie.png</normaloff>:/trie.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>16</height>
+            </size>
            </property>
           </widget>
           <widget class="QPushButton" name="pb_acceuil_2">

@@ -58,6 +58,7 @@
 #include<QStatusBar>
 #include "arduino.h"
 #include <QSound>
+#include<feedback.h>
 using namespace qrcodegen;
 using namespace QtCharts;
 
@@ -86,15 +87,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tab_personnel->setModel(p.afficher());
     ui->tab_for->setModel(Etmp.afficher());
     ui->tab_mat->setModel(Mat.afficher());
+
    QObject::connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(page2Widget()) );
    QObject::connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(page3Widget()) );
    QObject::connect(ui->pushButton_3,SIGNAL(clicked()),this, SLOT (page8Widget()) );
    QObject::connect(ui->pushButton_12,SIGNAL(clicked()),this, SLOT (page9Widget()) );
    QObject::connect(ui->configuration,SIGNAL(clicked()),this, SLOT (page10Widget()) );
-    
-    QPixmap pix("C:/Users/HP/Downloads/intg/img");
-    //ui->pic->setPixmap(pix.scaled(1000,1000,Qt::KeepAspectRatio));
-/*********************************matriel****************************************/
+
+/*********************************MAINTENANCE****************************************/
    setFixedSize(1200,1500);
 
 
@@ -130,7 +130,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->categorie->addItem("réfrégirateur");
 
 
-    //salma
+   /********************CANDIDATS****************************/
     ui->stackedWidget->setCurrentIndex(0);
 
 /*
@@ -2669,6 +2669,8 @@ void MainWindow::on_seconnecter_clicked()
     ui->id_con->setStyleSheet("color: black");
     ui->pass_con->setStyleSheet("color: black");
 
+
+    QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/welcome.wav");
     if(id_connexion == "admin" && password_connexion == "admin")
     {
         QMessageBox::information(this," Connexion ","Le nom d'utilisateur et le mot de passe sont corrects ") ;
@@ -2699,6 +2701,7 @@ void MainWindow::on_seconnecter_clicked()
          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/voice-access-denied.wav");
 
     }
+
 }
 //se diconnecter
 void MainWindow::on_pushButton_11_clicked()
