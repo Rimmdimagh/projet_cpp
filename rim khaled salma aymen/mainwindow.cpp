@@ -59,6 +59,7 @@
 #include "arduino.h"
 #include <QSound>
 #include<feedback.h>
+
 using namespace qrcodegen;
 using namespace QtCharts;
 
@@ -93,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
    QObject::connect(ui->pushButton_3,SIGNAL(clicked()),this, SLOT (page8Widget()) );
    QObject::connect(ui->pushButton_12,SIGNAL(clicked()),this, SLOT (page9Widget()) );
    QObject::connect(ui->configuration,SIGNAL(clicked()),this, SLOT (page10Widget()) );
-
+   QObject::connect(ui->pushButton_17,SIGNAL(clicked()),this, SLOT (page14Widget()) );
 /*********************************MAINTENANCE****************************************/
    setFixedSize(1200,1500);
 
@@ -132,6 +133,33 @@ MainWindow::MainWindow(QWidget *parent) :
 
    /********************CANDIDATS****************************/
     ui->stackedWidget->setCurrentIndex(0);
+    /******************************FEEDBACK***********************/
+    ui->le_cin->setValidator(new QIntValidator(0, 99999999, this));
+    ui->le_cin->setMaxLength(8);
+    ui->le_cin_2->setValidator(new QIntValidator(0, 99999999, this));
+    ui->le_cin_2->setMaxLength(8);
+    ui->cin_supp->setValidator(new QIntValidator(0, 99999999, this));
+    ui->cin_supp->setMaxLength(8);
+    ui->le_avis->setValidator(new QIntValidator(0, 5, this));
+    ui->le_avis->setMaxLength(1);
+    ui->le_avis_2->setValidator(new QIntValidator(0, 5, this));
+    ui->le_avis_2->setMaxLength(1);
+    ui->le_nom->setMaxLength(10);
+    ui->le_nom_2->setMaxLength(10);
+    ui->le_domaine->setMaxLength(10);
+    ui->le_domaine_2->setMaxLength(10);
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+    ui->tableView->setModel(model);
+
+    qDebug() <<(model->rowCount());
+
 
 /*
 
@@ -1941,6 +1969,12 @@ void MainWindow::page10Widget()
     QObject::connect(ui->configuration,SIGNAL(clicked()),this,SLOT(page1Widget()) );
     ui->stackedWidget->setCurrentWidget(ui->page_10);
 }
+void MainWindow::page14Widget()
+{
+    QObject::connect(ui->pushButton_17,SIGNAL(clicked()),this,SLOT(page1Widget()) );
+    ui->stackedWidget->setCurrentWidget(ui->page_14);
+}
+
 /**************************************MAINTENANCE***********************************/
 
 void MainWindow::on_pushButtonAjouter_2_clicked()
@@ -2621,6 +2655,208 @@ void MainWindow::on_pb_acceuil_3_clicked()
 }
 
 
+
+
+/***************************************************FEEDBACK***************************************/
+void MainWindow::on_pb_ajouter_2_clicked()
+{
+    int cin=ui->le_cin->text().toInt();
+    QString nom=ui->le_nom->text();
+    QString domaine=ui->le_domaine->text();
+    int avis=ui->le_avis->text().toInt();
+    feedback F(cin,nom,domaine,avis);
+
+    bool test=F.ajouter();
+
+    if(test)
+    {
+
+        QMessageBox::information(nullptr, QObject::tr("OK"),
+                    QObject::tr("Ajout effectué.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Ajout non effectué.\n"
+                                          "Click cancel to exit."), QMessageBox::Cancel);
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+    ui->tableView->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+
+void MainWindow::on_pb_modifier_3_clicked()
+{
+    int cin,avis;
+    QString nom,domaine;
+    cin=ui->le_cin_2->text().toInt();
+    nom=ui->le_nom_2->text();
+    domaine=ui->le_domaine_2->text();
+    avis=ui->le_avis_2->text().toInt();
+
+    QSqlQuery qry;
+    QString cin_string=QString::number(cin);
+    QString avis_string=QString::number(avis);
+          qry.prepare("update FEEDBACK set cin='"+cin_string+"', nom='"+nom+"', domaine='"+domaine+"', avis='"+avis_string+"' where cin='"+cin_string+"'");
+
+    if(qry.exec())
+    {
+
+        QMessageBox::information(nullptr, QObject::tr("OK"),
+                    QObject::tr("Modification effectué.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Modification non effectué.\n"
+                                          "Click cancel to exit."), QMessageBox::Cancel);
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+    ui->tableView->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+
+
+
+void MainWindow::on_pb_supprimer_2_clicked()
+{
+    int cin;
+    cin=ui->cin_supp->text().toInt();
+
+    QSqlQuery qry;
+    QString cin_string=QString::number(cin);
+          qry.prepare("Delete from FEEDBACK where cin='"+cin_string+"'");
+
+    if(qry.exec())
+    {
+
+        QMessageBox::information(nullptr, QObject::tr("OK"),
+                    QObject::tr("Supression effectué.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Supression non effectué.\n"
+                                          "Click cancel to exit."), QMessageBox::Cancel);
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+    ui->tableView->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+
+
+
+void MainWindow::on_stat_2_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+                        model->setQuery("select * from FEEDBACK where avis < 2 ");
+                        float avis=model->rowCount();
+                        model->setQuery("select * from FEEDBACK where avis  between 2 and 4 ");
+                        float avis2=model->rowCount();
+                        model->setQuery("select * from FEEDBACK where avis>4 ");
+                        float avis3=model->rowCount();
+                        float total=avis+avis2+avis3;
+                        QString a=QString("moins de 2 : "+QString::number((avis*100)/total,'f',2)+"%" );
+                        QString b=QString("entre 2 et 4 : "+QString::number((avis2*100)/total,'f',2)+"%" );
+                        QString c=QString("plus de 5 : "+QString::number((avis3*100)/total,'f',2)+"%" );
+                        QPieSeries *series = new QPieSeries();
+                        series->append(a,avis);
+                        series->append(b,avis2);
+                        series->append(c,avis3);
+                if (avis!=0)
+                {QPieSlice *slice = series->slices().at(0);
+                 slice->setLabelVisible();
+                 slice->setPen(QPen());}
+                if ( avis2!=0)
+                {
+                         // Add label, explode and define brush for 2nd slice
+                         QPieSlice *slice1 = series->slices().at(1);
+                         //slice1->setExploded();
+                         slice1->setLabelVisible();
+                }
+                if(avis3!=0)
+                {
+                         // Add labels to rest of slices
+                         QPieSlice *slice2 = series->slices().at(2);
+                         //slice1->setExploded();
+                         slice2->setLabelVisible();
+                }
+                        // Create the chart widget
+                        QChart *chart = new QChart();
+                        // Add data to chart with title and hide legend
+                        chart->addSeries(series);
+                        chart->setTitle("Pourcentage Par avis :Nombre des avis "+ QString::number(total));
+                        chart->legend()->hide();
+                        // Used to display the chart
+                        QChartView *chartView = new QChartView(chart);
+                        chartView->setRenderHint(QPainter::Antialiasing);
+                        chartView->resize(1000,500);
+                        chartView->show();
+}
+
+
+
+
+
+void MainWindow::on_pb_sms_clicked()
+{
+    QString link="https://console.twilio.com/us1/develop/sms/try-it-out/send-an-sms?frameUrl=%2Fconsole%2Fsms%2Fgetting-started%2Fbuild%3Fx-target-region%3Dus1";
+    QDesktopServices::openUrl(QUrl(link));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //configuration mode nuit ou jour
 void MainWindow::on_pushButton_13_clicked()
 {
@@ -2715,4 +2951,126 @@ void MainWindow::on_pushButton_16_clicked()
 {
 
     ui->stackedWidget->setCurrentWidget(ui->page);
+
+}
+
+
+
+
+
+
+
+void MainWindow::on_tridcr_nom_clicked()
+{
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY nom DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_nom->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_tricr_nom_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY nom ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_nom->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_tricr_cin_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY cin ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_cin->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_tridcr_cin_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY cin DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_cin->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_tricr_avis_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY avis ASC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_avis->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_tridcr_avis_clicked()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK ORDER BY avis DESC");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tri_avis->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_pb_rech_nom_clicked()
+{
+    QString nom=ui->rech_nom->text();
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK where nom='"+nom+"'");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tab_rech_nom->setModel(model);
+
+    qDebug() <<(model->rowCount());
 }

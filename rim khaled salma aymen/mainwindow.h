@@ -117,6 +117,9 @@ private slots:
   void page8Widget();
 void page9Widget();
 void page10Widget();
+void page14Widget();
+
+
   void on_pushButtonAjouter_2_clicked();
 
   void on_reset_2_clicked();
@@ -203,6 +206,32 @@ void page10Widget();
   void on_pushButton_11_clicked();
 
   void on_pushButton_16_clicked();
+
+  void on_pb_ajouter_2_clicked();
+
+  void on_pb_modifier_3_clicked();
+
+  void on_pb_supprimer_2_clicked();
+
+  void on_stat_2_clicked();
+
+  void on_pb_tirage_clicked();
+
+  void on_pb_sms_clicked();
+
+  void on_tridcr_nom_clicked();
+
+  void on_tricr_nom_clicked();
+
+  void on_tricr_cin_clicked();
+
+  void on_tridcr_cin_clicked();
+
+  void on_tricr_avis_clicked();
+
+  void on_tridcr_avis_clicked();
+
+  void on_pb_rech_nom_clicked();
 
 private:
 

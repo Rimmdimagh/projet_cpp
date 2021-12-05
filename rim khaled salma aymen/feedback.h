@@ -1,4 +1,3 @@
-/*
 #ifndef FEEDBACK_H
 #define FEEDBACK_H
 #include<QString>
@@ -17,10 +16,12 @@ public:
    void setnom(QString);
    void setdomaine(QString);
    void setavis(int);
-
-
+bool ajouter();
+private:
+    int cin,avis;
+    QString nom,domaine;
 
 };
 
 #endif // FEEDBACK_H
-*/
+
