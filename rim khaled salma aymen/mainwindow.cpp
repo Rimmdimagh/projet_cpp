@@ -2603,7 +2603,7 @@ void MainWindow::on_pb_acceuil_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);//prob
 }
-/****************************************************************************/
+
 
 //configuration mode nuit ou jour
 void MainWindow::on_pushButton_13_clicked()
@@ -2613,13 +2613,27 @@ void MainWindow::on_pushButton_13_clicked()
 
 
             ui->page_10->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+            ui->page->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+            ui->page_2->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+            ui->page_3->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+            ui->page_8->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
+            ui->page_9->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
 
-            //ui->widget->setStyleSheet("background-color: rgb(197, 131, 98);");
 
     }
     else if(ui->mode->currentText()=="NUIT")
     {
             ui->page_10->setStyleSheet("background-color: rgb(40,40,40)");
+
+            ui->page->setStyleSheet("background-color: rgb(40,40,40)");
+
+            ui->page_2->setStyleSheet("background-color: rgb(40,40,40)");
+
+            ui->page_3->setStyleSheet("background-color: rgb(40,40,40)");
+
+            ui->page_8->setStyleSheet("background-color: rgb(40,40,40)");
+
+            ui->page_9->setStyleSheet("background-color: rgb(40,40,40)");
 }
 
 }
@@ -2641,8 +2655,9 @@ void MainWindow::on_seconnecter_clicked()
 
     if(id_connexion == "admin" && password_connexion == "admin")
     {
-        //Etmp.notifications("Connexion", "Le nom d'utilisateur et le mot de passe sont corrects");
-        //ui->label_username->setText(ui->lineEdit_id_connexion->text());
+
+        QMessageBox::information(this," Connexion ","Le nom d'utilisateur et le mot de passe sont corrects ") ;
+
        ui->stackedWidget->setCurrentWidget(ui->page);
 
 

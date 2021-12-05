@@ -905,14 +905,14 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_11">
        <widget class="QStackedWidget" name="mp_oublier">
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>30</y>
+          <y>40</y>
           <width>751</width>
           <height>371</height>
          </rect>
@@ -1064,9 +1064,9 @@ color: rgb(0, 0, 255);
        <widget class="QPushButton" name="pushButton">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>100</y>
-          <width>261</width>
+          <width>271</width>
           <height>61</height>
          </rect>
         </property>
@@ -1087,7 +1087,7 @@ color: rgb(0, 0, 255);
          <rect>
           <x>30</x>
           <y>190</y>
-          <width>261</width>
+          <width>271</width>
           <height>61</height>
          </rect>
         </property>
@@ -1108,7 +1108,7 @@ color: rgb(0, 0, 255);
          <rect>
           <x>30</x>
           <y>290</y>
-          <width>261</width>
+          <width>271</width>
           <height>61</height>
          </rect>
         </property>
@@ -1171,7 +1171,7 @@ color: rgb(0, 0, 255);
          <rect>
           <x>30</x>
           <y>370</y>
-          <width>261</width>
+          <width>271</width>
           <height>61</height>
          </rect>
         </property>
@@ -1184,7 +1184,7 @@ color: rgb(0, 0, 255);
          <rect>
           <x>30</x>
           <y>452</y>
-          <width>261</width>
+          <width>271</width>
           <height>61</height>
          </rect>
         </property>
@@ -1224,9 +1224,9 @@ color: rgb(0, 0, 255);
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>10</y>
+          <y>110</y>
           <width>1044</width>
-          <height>621</height>
+          <height>521</height>
          </rect>
         </property>
         <property name="currentIndex">
@@ -1698,7 +1698,7 @@ color: rgb(0, 0, 255);
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -1772,7 +1772,7 @@ color: rgb(0, 0, 255);
              <rect>
               <x>10</x>
               <y>230</y>
-              <width>101</width>
+              <width>111</width>
               <height>16</height>
              </rect>
             </property>
@@ -1862,8 +1862,8 @@ color: rgb(0, 0, 255);
            <widget class="QPushButton" name="pushButtonAjouter">
             <property name="geometry">
              <rect>
-              <x>640</x>
-              <y>360</y>
+              <x>590</x>
+              <y>280</y>
               <width>241</width>
               <height>31</height>
              </rect>
@@ -1895,8 +1895,8 @@ color: rgb(0, 0, 255);
            <widget class="QPushButton" name="Mod_2">
             <property name="geometry">
              <rect>
-              <x>640</x>
-              <y>410</y>
+              <x>590</x>
+              <y>320</y>
               <width>241</width>
               <height>31</height>
              </rect>
@@ -1928,8 +1928,8 @@ color: rgb(0, 0, 255);
            <widget class="QPushButton" name="rechercher_button_2">
             <property name="geometry">
              <rect>
-              <x>640</x>
-              <y>460</y>
+              <x>590</x>
+              <y>360</y>
               <width>241</width>
               <height>28</height>
              </rect>
@@ -2083,9 +2083,7 @@ border: none;
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0.919598 rgba(255, 0, 111, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(235, 148, 61, 255));
-color: rgb(0, 0, 127);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0100503 rgba(252, 222, 204, 255), stop:0.0502513 rgba(254, 223, 175, 255), stop:0.211055 rgba(246, 189, 237, 255), stop:0.487437 rgba(249, 162, 183, 255), stop:0.753769 rgba(206, 122, 218, 255), stop:1 rgba(170, 128, 185, 255));</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>QUITER</string>
@@ -2105,9 +2103,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0.919598 rgba(255, 0, 111, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(235, 148, 61, 255));
-color: rgb(0, 0, 127);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0100503 rgba(252, 222, 204, 255), stop:0.0502513 rgba(254, 223, 175, 255), stop:0.211055 rgba(246, 189, 237, 255), stop:0.487437 rgba(249, 162, 183, 255), stop:0.753769 rgba(206, 122, 218, 255), stop:1 rgba(170, 128, 185, 255));</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>DICONNEXION</string>
@@ -2115,19 +2111,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
             <property name="icon">
              <iconset resource="img.qrc">
               <normaloff>:/diconnexion.png</normaloff>:/diconnexion.png</iconset>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="pushButton_15">
-            <property name="geometry">
-             <rect>
-              <x>20</x>
-              <y>500</y>
-              <width>75</width>
-              <height>23</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Acceuil</string>
             </property>
            </widget>
           </widget>
@@ -2148,8 +2131,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
            <widget class="QPushButton" name="Mod_4">
             <property name="geometry">
              <rect>
-              <x>720</x>
-              <y>370</y>
+              <x>780</x>
+              <y>350</y>
               <width>201</width>
               <height>28</height>
              </rect>
@@ -2208,16 +2191,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
            <widget class="QPushButton" name="qrcodegen">
             <property name="geometry">
              <rect>
-              <x>720</x>
-              <y>410</y>
+              <x>780</x>
+              <y>380</y>
               <width>200</width>
               <height>28</height>
              </rect>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0.919598 rgba(255, 0, 111, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(235, 148, 61, 255));
-color: rgb(0, 0, 127);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0100503 rgba(252, 222, 204, 255), stop:0.0502513 rgba(254, 223, 175, 255), stop:0.211055 rgba(246, 189, 237, 255), stop:0.487437 rgba(249, 162, 183, 255), stop:0.753769 rgba(206, 122, 218, 255), stop:1 rgba(170, 128, 185, 255));</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Générer QR Code</string>
@@ -2230,7 +2211,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
             <property name="geometry">
              <rect>
               <x>740</x>
-              <y>160</y>
+              <y>150</y>
               <width>200</width>
               <height>200</height>
              </rect>
@@ -2299,8 +2280,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
            <widget class="QPushButton" name="rechercher_button_22">
             <property name="geometry">
              <rect>
-              <x>720</x>
-              <y>450</y>
+              <x>780</x>
+              <y>410</y>
               <width>201</width>
               <height>28</height>
              </rect>
@@ -2313,9 +2294,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0.919598 rgba(255, 0, 111, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(235, 148, 61, 255));
-color: rgb(0, 0, 127);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0100503 rgba(252, 222, 204, 255), stop:0.0502513 rgba(254, 223, 175, 255), stop:0.211055 rgba(246, 189, 237, 255), stop:0.487437 rgba(249, 162, 183, 255), stop:0.753769 rgba(206, 122, 218, 255), stop:1 rgba(170, 128, 185, 255));</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>ajouter un code pin </string>
@@ -2325,7 +2304,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>370</y>
+              <y>360</y>
               <width>441</width>
               <height>80</height>
              </rect>
@@ -2399,7 +2378,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.010
             <property name="geometry">
              <rect>
               <x>770</x>
-              <y>430</y>
+              <y>400</y>
               <width>181</width>
               <height>28</height>
              </rect>
@@ -2546,6 +2525,131 @@ border:2px solid #000;
            </widget>
           </widget>
          </widget>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>10</y>
+          <width>441</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+        <widget class="QLabel" name="le_photo">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>91</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:black;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="le_depart_rfid">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>80</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="le_user_rfid">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>10</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_64">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>40</y>
+           <width>61</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>email</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="le_email_rfid">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>40</y>
+           <width>221</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_65">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>80</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>department</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_66">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>10</y>
+           <width>71</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:black;</string>
+         </property>
+         <property name="text">
+          <string>username</string>
+         </property>
         </widget>
        </widget>
       </widget>
