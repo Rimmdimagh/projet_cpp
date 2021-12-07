@@ -10,7 +10,6 @@ Matriel::Matriel()
     marque="";
     categorie="";
     etat="";
-
     mail="";
 }
 Matriel::Matriel(int id_m,QString nom_m,QString reference_m,QString marque_m,QString categorie_m,QString etat_m,QString mail_m ,QDate miseFab_m,QDate miseFonc_m)
@@ -136,9 +135,9 @@ QSqlQueryModel * Matriel::rechercher(QString ch)
 
          return model;
 }
-bool Matriel::modifier_e(int id , int ide)
-{
 
+bool Matriel::modifier_e(int id,int ide)
+{
     QSqlQuery query;
     QString id_string= QString::number(id);
     QString ide_string= QString::number(ide);
@@ -147,27 +146,32 @@ bool Matriel::modifier_e(int id , int ide)
     query.bindValue(":ID", id_string);
     query.bindValue(":IDE",ide_string);
     return    query.exec();
+
 }
+
 QStringList Matriel::recherche_t(){
-
     QSqlQuery query;
-       query.prepare("select ID from MATRIEL Where ETAT= 'panne' ");
-       query.exec();
-       QStringList list;
-       while(query.next()){
-           list.append(query.value(0).toString());
-       }
+    query.prepare("select ID from MATRIEL Where ETAT='panne' ");
+    query.exec();
+    QStringList list;
+    while(query.next()){
+        list.append(query.value(0).toString());
+    }
 
-       return list;
+    return list;
+
 }
+
 QStringList Matriel::recherche_t1(){
     QSqlQuery query;
-        query.prepare("select CIN from PERSON ");
-        query.exec();
-        QStringList list;
-        while(query.next()){
-            list.append(query.value(0).toString());
-        }
+    query.prepare("select CIN from PERSON ");
+    query.exec();
+    QStringList list;
+    while(query.next()){
+        list.append(query.value(0).toString());
+    }
 
-        return list;
+    return list;
+
 }
+

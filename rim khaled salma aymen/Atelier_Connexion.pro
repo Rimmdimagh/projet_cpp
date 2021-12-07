@@ -33,6 +33,7 @@ CONFIG += c++11
 
 SOURCES += \
     arduino.cpp \
+    condidature.cpp \
     entretien.cpp \
     feedback.cpp \
     formation.cpp \
@@ -47,6 +48,7 @@ SOURCES += \
 
 HEADERS += \
     arduino.h \
+    condidature.h \
     dialog.h \
     entretien.h \
     feedback.h \
@@ -72,4 +74,5 @@ DISTFILES += \
 
 RESOURCES += \
     img.qrc \
+    resource.qrc \
     translator.qrc

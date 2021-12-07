@@ -43,7 +43,7 @@
 #include <QSequentialAnimationGroup>
 #include <QTableWidgetItem>
 #include "arduino.h"
-
+#include<condidature.h>
 
 struct Position {
     int x;
@@ -115,10 +115,10 @@ private slots:
   void page2Widget();
   void page3Widget();
   void page8Widget();
-void page9Widget();
-void page10Widget();
-void page14Widget();
-
+  void page9Widget();
+  void page10Widget();
+  void page14Widget();
+  void page15Widget();
 
   void on_pushButtonAjouter_2_clicked();
 
@@ -239,6 +239,38 @@ void page14Widget();
 
   void on_pushButton_15_clicked();
 
+  void on_pb_ajouter_4_clicked();
+
+  void on_modifier_3_clicked();
+
+  void on_pb_supprimer_4_clicked();
+
+  void on_trier_2_clicked();
+
+  void on_rechercher_2_clicked();
+
+  void on_rechercher2_2_clicked();
+
+  void on_rechercher3_2_clicked();
+
+  void on_pushButton_19_clicked();
+
+  void on_pushButton_10_clicked();
+
+  void on_pushButton_9_clicked();
+
+  void on_pushButton_8_clicked();
+
+  void on_pushButton_21_clicked();
+
+  void on_pushButton_22_clicked();
+
+  void on_pushButton_23_clicked();
+
+  void on_pushButton_28_clicked();
+
+  void on_pushButton_20_clicked();
+
 private:
 
     QString ewCaesarCipher(QString plainText, int key);
@@ -294,7 +326,8 @@ private:
     //Arduino Ard;
     QByteArray data;
     Matriel Mat;
-
+    condidature Ctmp;
+    condidature C;
 };
 
 #endif // MAINWINDOW_H

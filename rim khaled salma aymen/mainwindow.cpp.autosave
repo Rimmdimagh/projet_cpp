@@ -2992,6 +2992,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 
 ui->statu->clear();
     }
@@ -3008,6 +3010,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(false);
           ui->pushButton_18->setDisabled(true);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "aymen" && password_connexion == "rahali" && status=="formation")
@@ -3023,6 +3027,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(false);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "khaled" && password_connexion == "turki" && status=="personnel")
@@ -3037,6 +3043,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "mariem" && password_connexion == "ftouhi" && status=="condidature")
@@ -3052,6 +3060,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(false);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "salma" && password_connexion == "damak" && status=="condidat")
@@ -3067,6 +3077,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+          
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else if(id_connexion != "admin" && password_connexion == "admin")

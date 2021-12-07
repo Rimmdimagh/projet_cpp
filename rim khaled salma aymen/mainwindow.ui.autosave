@@ -912,7 +912,7 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_11">
        <widget class="QStackedWidget" name="mp_oublier">
@@ -1262,6 +1262,9 @@ color: rgb(0, 0, 255);
           <bold>true</bold>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>Maintenance</string>
         </property>
@@ -1279,7 +1282,7 @@ color: rgb(0, 0, 255);
        <widget class="QPushButton" name="close">
         <property name="geometry">
          <rect>
-          <x>1160</x>
+          <x>1140</x>
           <y>20</y>
           <width>31</width>
           <height>21</height>
@@ -1299,7 +1302,7 @@ color: rgb(0, 0, 255);
        <widget class="QPushButton" name="pushButton_11">
         <property name="geometry">
          <rect>
-          <x>1130</x>
+          <x>1110</x>
           <y>20</y>
           <width>31</width>
           <height>21</height>
