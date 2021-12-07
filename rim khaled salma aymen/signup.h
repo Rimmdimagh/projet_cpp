@@ -1,32 +1,27 @@
 #ifndef SIGNUP_H
 #define SIGNUP_H
 
-#include <QString>
-#include <QSqlQuery>
-#include <QSqlQueryModel>
-
+#include<QString>
+#include<QSqlQueryModel>
+#include <QDebug>
+#include <QtDebug>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <QThread>
 class signup
 {
-
-    QString username, password,name,poste;
-
 public:
-
     signup();
-    signup(QString,QString,QString,QString);
+    signup(QString,QString,QString);
+    bool Login();
+    QString afficherRole();
 
-    QString GetUsername();
-    QString GetPassword();
-    QString GetName();
-    QString GetPoste();
 
-    void SetUsername(QString U){username=U;}
-    void SetPassword(QString P){password=P;}
-    void SetName(QString N){name=N;}
-    void SetPoste(QString P){poste=P;}
-
-        bool ajouter();
+private:
+    int id;
+    QString username,password,role;
 
 };
+
 
 #endif // SIGNUP_H

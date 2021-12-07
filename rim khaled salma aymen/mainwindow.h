@@ -233,6 +233,12 @@ void page14Widget();
 
   void on_pb_rech_nom_clicked();
 
+  void on_pb_rech_avis_clicked();
+
+  void on_pb_rech_cin_clicked();
+
+  void on_pushButton_15_clicked();
+
 private:
 
     QString ewCaesarCipher(QString plainText, int key);

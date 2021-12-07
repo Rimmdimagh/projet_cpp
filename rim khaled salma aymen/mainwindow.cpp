@@ -156,9 +156,9 @@ MainWindow::MainWindow(QWidget *parent) :
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
 
-    ui->tableView->setModel(model);
+   // ui->tableView->setModel(model);
 
-    qDebug() <<(model->rowCount());
+    //qDebug() <<(model->rowCount());
 
 
 /*
@@ -2649,10 +2649,7 @@ void MainWindow::on_le_recherche_textChanged(const QString &arg1)
     }
 }
 
-void MainWindow::on_pb_acceuil_3_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);//prob
-}
+
 
 
 
@@ -2661,7 +2658,7 @@ void MainWindow::on_pb_acceuil_3_clicked()
 void MainWindow::on_pb_ajouter_2_clicked()
 {
     int cin=ui->le_cin->text().toInt();
-    QString nom=ui->le_nom->text();
+    QString nom=ui->le_nom_2->text();
     QString domaine=ui->le_domaine->text();
     int avis=ui->le_avis->text().toInt();
     feedback F(cin,nom,domaine,avis);
@@ -2689,18 +2686,21 @@ void MainWindow::on_pb_ajouter_2_clicked()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
 
-    ui->tableView->setModel(model);
+    ui->tableView_2->setModel(model);
 
     qDebug() <<(model->rowCount());
+    ui->le_cin->clear();
+    ui->le_domaine->clear();
+    ui->le_nom_2->clear();
+    ui->le_avis->clear();
 }
-
 
 void MainWindow::on_pb_modifier_3_clicked()
 {
     int cin,avis;
     QString nom,domaine;
     cin=ui->le_cin_2->text().toInt();
-    nom=ui->le_nom_2->text();
+    nom=ui->le_nom_3->text();
     domaine=ui->le_domaine_2->text();
     avis=ui->le_avis_2->text().toInt();
 
@@ -2726,11 +2726,11 @@ void MainWindow::on_pb_modifier_3_clicked()
 
     model->setQuery("select * FROM FEEDBACK");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(1,Qt::Horizontal, QObject::tr("nom"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
 
-    ui->tableView->setModel(model);
+    ui->tableView_2->setModel(model);
 
     qDebug() <<(model->rowCount());
 }
@@ -2768,7 +2768,7 @@ void MainWindow::on_pb_supprimer_2_clicked()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
 
-    ui->tableView->setModel(model);
+    ui->tableView_2->setModel(model);
 
     qDebug() <<(model->rowCount());
 }
@@ -2938,7 +2938,11 @@ void MainWindow::on_seconnecter_clicked()
 
     }
 
+
+
 }
+
+
 //se diconnecter
 void MainWindow::on_pushButton_11_clicked()
 {
@@ -3073,4 +3077,48 @@ void MainWindow::on_pb_rech_nom_clicked()
     ui->tab_rech_nom->setModel(model);
 
     qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_pb_rech_avis_clicked()
+{
+    QString avis=ui->rech_avis->text();
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK where avis='"+avis+"'");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tab_rech_avis->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_pb_rech_cin_clicked()
+{
+    QString cin=ui->rech_cin->text();
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("select * FROM FEEDBACK where cin='"+cin+"'");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+
+    ui->tab_rech_cin->setModel(model);
+
+    qDebug() <<(model->rowCount());
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    ui->le_cin->setText("");
+    ui->le_domaine->setText("");
+    ui->le_nom_2->setText("");
+    ui->le_avis->setText("");
 }

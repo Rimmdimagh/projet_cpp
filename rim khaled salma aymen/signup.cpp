@@ -1,35 +1,52 @@
 #include "signup.h"
+#include<QSqlQuery>
+#include<QtDebug>
+#include<QDate>
+#include<QObject>
 
 signup::signup()
 {
-    username="";
-    password="";
-    name="";
-    poste="";
+  id=0;
+  username="";
+  password="";
+  role="";
 }
-
-signup::signup(QString username,QString password, QString name, QString poste)
+signup::signup(QString username,QString password,QString role)
 {
+
     this->username=username;
     this->password=password;
-    this->name=name;
-    this->poste=poste;
-
+    this->role=role;
 }
-
-QString signup::GetUsername(){return username;}
-QString signup::GetPassword(){return password;}
-QString signup::GetName(){return name;}
-QString signup::GetPoste(){return poste;}
-
-bool signup::ajouter()
+bool signup::Login()
 {
-QSqlQuery query;
- query.prepare("INSERT INTO SIGNUP (USERNAME, PASSWORD, NAME, POSTE)"
-        "VALUES(:username, :password, :name, :poste)");
- query.bindValue(":username",username);
- query.bindValue(":password",password);
- query.bindValue(":name",name);
- query.bindValue(":poste",poste);
-return query.exec();
+    QSqlQuery query;
+       bool test=false;
+
+           query.prepare("Select username,password,role FROM users where username=:username and password=:password");
+            query.bindValue(":username",username);
+             query.bindValue(":password",password);
+             query.bindValue(":role",role);
+
+             if(query.exec()&&query.next())
+       {
+                 test=true;
+            return test;
+       }
+       return test;
+}
+QString signup::afficherRole()
+{
+    QSqlQuery query;
+
+           query.prepare("Select username,password,role FROM users where username=:username and password=:password");
+            query.bindValue(":username",username);
+             query.bindValue(":password",password);
+             query.bindValue(":role",role);
+            query.exec();
+            query.next();
+            QString a=query.value(2).toString();
+
+
+return a;
 }

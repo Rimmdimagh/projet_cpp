@@ -109,7 +109,7 @@ Personnel::Personnel(int cin,int telephone ,int age,int dureeTravail ,QString no
      {
 
          QSqlQuery query;
-               query.prepare("INSERT INTO person (CIN,NOM,PRENOM,ADRESSE,ADRESSEMAIL,TELEPHONE,DUREETRAVAIL,AGE,MESSAGE)"
+               query.prepare("INSERT INTO PERSON (CIN,NOM,PRENOM,ADRESSE,ADRESSEMAIL,TELEPHONE,DUREETRAVAIL,AGE,MESSAGE)"
                              "VALUES (:CIN, :NOM, :PRENOM, :ADRESSE ,:ADRESSEMAIL,:TELEPHONE,:DUREETRAVAIL,:AGE,:MESSAGE )");
                QString  cin_string= QString::number(cin);
                QString  age_string= QString::number(age);
@@ -117,22 +117,15 @@ Personnel::Personnel(int cin,int telephone ,int age,int dureeTravail ,QString no
                QString  dureeTravail_string= QString::number(dureeTravail);
 
 
-               query.bindValue(":cin", cin);
-               query.bindValue(":nom", nom);
-               query.bindValue(":prenom", prenom);
-               query.bindValue(":adresse", adresse);
-               query.bindValue(":adresseMail", adresseMail);
-               query.bindValue(":telephone", telephone);
-               query.bindValue(":dureeTravail", dureeTravail);
-               query.bindValue(":age",age);
-               query.bindValue(":message",message);
-
-
-
-
-
-
-
+               query.bindValue(":CIN", cin_string);
+               query.bindValue(":NOM", nom);
+               query.bindValue(":PRENOM", prenom);
+               query.bindValue(":ADRESSE", adresse);
+               query.bindValue(":ADRESSEMAIL", adresseMail);
+               query.bindValue(":TELEPHONE", telephone_string);
+               query.bindValue(":DUREETRAVAIL", dureeTravail_string);
+               query.bindValue(":AGE",age_string);
+               query.bindValue(":MESSAGE",message);
 
 
               return query.exec();
@@ -182,8 +175,8 @@ Personnel::Personnel(int cin,int telephone ,int age,int dureeTravail ,QString no
      query.bindValue(":adresseMail",adresseMail);
      query.bindValue(":nom", nom);
      query.bindValue(":prenom", prenom);
-     query.bindValue(":age", age);
-     query.bindValue(":dureeTravail", dureeTravail);
+     query.bindValue(":age", res2);
+     query.bindValue(":dureeTravail", res1);
 
 
 
@@ -244,3 +237,4 @@ Personnel::Personnel(int cin,int telephone ,int age,int dureeTravail ,QString no
          return model;
 
      }
+

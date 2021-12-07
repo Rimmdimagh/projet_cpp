@@ -56,7 +56,8 @@ query.bindValue(":DURE_FOR", DURE_FORstring );
 }
 
 QSqlQueryModel * Formation::afficher()
-{QSqlQueryModel * model= new QSqlQueryModel();
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
 
 model->setQuery("select * from Formation");
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("CODE_FORMATION"));

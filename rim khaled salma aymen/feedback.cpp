@@ -39,3 +39,15 @@ bool feedback::ajouter()
           query.bindValue(":avis", avis_string);
     return query.exec();
 }
+QSqlQueryModel * feedback::afficher(){
+
+QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * FROM FEEDBACK");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("domaine"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("avis"));
+
+return model;
+}

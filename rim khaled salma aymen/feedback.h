@@ -17,6 +17,7 @@ public:
    void setdomaine(QString);
    void setavis(int);
 bool ajouter();
+QSqlQueryModel * afficher();
 private:
     int cin,avis;
     QString nom,domaine;
