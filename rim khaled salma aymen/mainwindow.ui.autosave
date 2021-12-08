@@ -912,9 +912,14 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_11">
+       <property name="styleSheet">
+        <string notr="true">
+background-color: rgb(224, 187, 255);
+color: rgb(255, 255, 0);</string>
+       </property>
        <widget class="QStackedWidget" name="mp_oublier">
         <property name="geometry">
          <rect>
@@ -5256,7 +5261,7 @@ border:2px solid #000;
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_13">
            <attribute name="title">
@@ -6756,11 +6761,11 @@ border:2px solid #000;
              </property>
              <property name="font">
               <font>
-               <family>Sitka</family>
+               <family>MS Shell Dlg 2</family>
                <pointsize>12</pointsize>
                <weight>50</weight>
                <bold>false</bold>
-               <stylestrategy>PreferAntialias</stylestrategy>
+               <stylestrategy>PreferDefault</stylestrategy>
               </font>
              </property>
              <property name="text">

@@ -59,7 +59,6 @@
 #include "arduino.h"
 #include <QSound>
 #include<feedback.h>
-
  #include "condidature.h"
 #include<QTimer>
 #include<QDateTime>
@@ -87,7 +86,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //QTimer * timer = new QTimer(this);
     timer->setSingleShot(true);
     timer->setInterval(1500);
-    timer->start();
+    //timer->start();
     connect(timer, &QTimer::timeout, []() { QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/hello.wav"); });
 
 
@@ -2932,28 +2931,31 @@ void MainWindow::on_pushButton_13_clicked()
     {
 
 
-            ui->page_10->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-            ui->page->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-            ui->page_2->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-            ui->page_3->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-            ui->page_8->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-            ui->page_9->setStyleSheet("background-color: rgb(245,172,162);color: rgb(121, 79, 29);");
-
+            ui->page_10->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_2->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_3->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_8->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_9->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+ui->page_14->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+ui->page_15->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
 
     }
     else if(ui->mode->currentText()=="NUIT")
     {
-            ui->page_10->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page_10->setStyleSheet("background-color: rgb(85, 0, 127)");
 
-            ui->page->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page->setStyleSheet("background-color: rgb(85, 0, 127)");
 
-            ui->page_2->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page_2->setStyleSheet("background-color: rgb(85, 0, 127)");
 
-            ui->page_3->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page_3->setStyleSheet("background-color: rgb(85, 0, 127)");
 
-            ui->page_8->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page_8->setStyleSheet("background-color:rgb(85, 0, 127)");
 
-            ui->page_9->setStyleSheet("background-color: rgb(40,40,40)");
+            ui->page_9->setStyleSheet("background-color: rgb(85, 0, 127)");
+            ui->page_14->setStyleSheet("background-color: rgb(85, 0, 127)");
+            ui->page_15->setStyleSheet("background-color: rgb(85, 0, 127)");
 }
 
 }
