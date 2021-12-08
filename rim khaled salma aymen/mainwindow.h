@@ -271,6 +271,16 @@ private slots:
 
   void on_pushButton_20_clicked();
 
+  void on_pushButton_29_clicked();
+
+  void on_pushButton_30_clicked();
+
+  void on_pushButton_31_clicked();
+
+  void on_pushButton_32_clicked();
+
+  void on_pushButton_33_clicked();
+
 private:
 
     QString ewCaesarCipher(QString plainText, int key);

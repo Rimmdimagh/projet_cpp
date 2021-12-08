@@ -912,9 +912,12 @@
        </palette>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_11">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <widget class="QStackedWidget" name="mp_oublier">
         <property name="geometry">
          <rect>
@@ -957,6 +960,12 @@
             <width>371</width>
             <height>281</height>
            </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::WinPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
           </property>
           <property name="text">
            <string/>
@@ -1057,7 +1066,7 @@
           <widget class="QPushButton" name="pushButton_passwordforgot">
            <property name="geometry">
             <rect>
-             <x>190</x>
+             <x>180</x>
              <y>130</y>
              <width>171</width>
              <height>21</height>
@@ -1148,7 +1157,7 @@ color: rgb(0, 0, 255);
            <property name="geometry">
             <rect>
              <x>60</x>
-             <y>160</y>
+             <y>170</y>
              <width>71</width>
              <height>16</height>
             </rect>
@@ -1179,8 +1188,8 @@ color: rgb(0, 0, 255);
          <widget class="QLabel" name="digital_clock">
           <property name="geometry">
            <rect>
-            <x>560</x>
-            <y>20</y>
+            <x>400</x>
+            <y>40</y>
             <width>421</width>
             <height>71</height>
            </rect>
@@ -2000,7 +2009,7 @@ color: rgb(0, 0, 255);
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -5256,7 +5265,7 @@ border:2px solid #000;
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_13">
            <attribute name="title">
@@ -6756,11 +6765,11 @@ border:2px solid #000;
              </property>
              <property name="font">
               <font>
-               <family>Sitka</family>
+               <family>MS Shell Dlg 2</family>
                <pointsize>12</pointsize>
                <weight>50</weight>
                <bold>false</bold>
-               <stylestrategy>PreferAntialias</stylestrategy>
+               <stylestrategy>PreferDefault</stylestrategy>
               </font>
              </property>
              <property name="text">
@@ -8736,7 +8745,7 @@ Cordialement .</string>
            <enum>QTabWidget::Triangular</enum>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -10451,7 +10460,7 @@ Cordialement .</string>
          <enum>QTabWidget::Triangular</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_37">
          <attribute name="title">

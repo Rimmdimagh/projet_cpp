@@ -2937,8 +2937,8 @@ void MainWindow::on_pushButton_13_clicked()
             ui->page_3->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
             ui->page_8->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
             ui->page_9->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
-ui->page_14->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
-ui->page_15->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_14->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
+            ui->page_15->setStyleSheet("background-color: rgb(224, 187, 255); color: rgb(0, 0, 0);");
 
     }
     else if(ui->mode->currentText()=="NUIT")
@@ -3154,7 +3154,7 @@ void MainWindow::on_pushButton_16_clicked()
               player->setMedia(QUrl::fromLocalFile("C:/Users/HP/Downloads/intg/button.wav"));
               player->setVolume(2000);
               player->play();
-    ui->stackedWidget->setCurrentWidget(ui->page);
+    ui->stackedWidget->setCurrentIndex(1);
 
 }
 
@@ -3649,4 +3649,34 @@ void MainWindow::on_pushButton_20_clicked()
                player->setVolume(2000);
                player->play();
   this->close();
+}
+
+void MainWindow::on_pushButton_29_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_30_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_31_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pb_acceuil_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_32_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_pushButton_33_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
