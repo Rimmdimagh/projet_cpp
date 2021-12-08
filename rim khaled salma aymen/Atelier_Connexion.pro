@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 QT       += core gui sql
+QT += core
 QT       += core gui network
 QT  += network
 QT  += core gui charts

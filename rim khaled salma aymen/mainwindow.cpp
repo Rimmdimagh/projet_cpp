@@ -61,7 +61,9 @@
 #include<feedback.h>
 
  #include "condidature.h"
-
+#include<QTimer>
+#include<QDateTime>
+ #include <QApplication>
 using namespace qrcodegen;
 using namespace QtCharts;
 
@@ -72,12 +74,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QTimer *timer=new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this ,SLOT(showTime()));
+    timer->start(1000);
+    //showTime();
     /***********************sound**************************/
 
 
 
     QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/welcome.wav");
-    QTimer *timer = new QTimer(this);
+    //QTimer * timer = new QTimer(this);
     timer->setSingleShot(true);
     timer->setInterval(1500);
     timer->start();
@@ -203,6 +210,12 @@ MainWindow::MainWindow(QWidget *parent) :
     else if(nombre==9)
         ui->citation->setText("LES PORTES DE L'AVENIR SONT OUVERTES A CEUX QUI SAVENT LES POUSSER.");
 
+}
+void  MainWindow::showTime(){
+
+    QTime time=QTime::currentTime();
+    QString time_text=time.toString(" hh : mm : ss");
+    ui->digital_clock->setText(time_text);
 }
 
 MainWindow::~MainWindow()
@@ -2993,6 +3006,8 @@ ui->statu->clear();
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
 
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
+
 ui->statu->clear();
     }
     else  if(id_connexion == "rim" && password_connexion == "mdimagh" && status=="maintenance")
@@ -3008,6 +3023,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(false);
           ui->pushButton_18->setDisabled(true);
+
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "aymen" && password_connexion == "rahali" && status=="formation")
@@ -3023,6 +3040,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(false);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "khaled" && password_connexion == "turki" && status=="personnel")
@@ -3037,6 +3056,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "mariem" && password_connexion == "ftouhi" && status=="condidature")
@@ -3052,6 +3073,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(false);
+
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else  if(id_connexion == "salma" && password_connexion == "damak" && status=="condidat")
@@ -3067,6 +3090,8 @@ ui->statu->clear();
           ui->pushButton->setDisabled(true);
           ui->pushButton_3->setDisabled(true);
           ui->pushButton_18->setDisabled(true);
+
+          QSound::play("C:/Users/HP/Desktop/integration/rim khaled salma aymen/accepted.wav");
 ui->statu->clear();
     }
     else if(id_connexion != "admin" && password_connexion == "admin")

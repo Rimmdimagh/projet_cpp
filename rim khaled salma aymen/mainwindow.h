@@ -319,6 +319,12 @@ private:
     std::vector< std::bitset<8> > bytesOfMessage(std::string msg);
  int nombre;
 
+
+
+ void showTime();
+
+
+
    Formation Etmp;
     Ui::MainWindow *ui;
     Personnel p,p1 ;
