@@ -1,0 +1,187 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "personnel.h"
+#include <QMessageBox>
+#include <QSqlQueryModel>
+#include "smtp.h"
+#include "emailll.h"
+#include "qrcode.h"
+
+using namespace qrcodegen;
+
+
+
+
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->tab_personnel->setModel(p.afficher());
+    connect(ui->sendBtn, SIGNAL(clicked()),this, SLOT(sendMail()));
+
+
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+void MainWindow::on_pb_Ajouter_clicked()
+{
+    int cin = ui->p_CIN->text().toInt();
+    QString prenom =ui->p_PRENOM->text();
+    QString nom=ui->p_NOM->text();
+    QString adresse= ui->p_ADRESSE->text();
+    QString adresseMail=ui->p_MAIL->text();
+    int telephone =ui->p_TELEPHONE->text().toInt();
+    int dureeTravail=ui->p_DUREE->text().toInt();
+     int age= ui->p_age->text().toInt();
+
+  Personnel P(cin,telephone,dureeTravail,age,nom,prenom,adresse,adresseMail);
+
+
+
+bool test=P.ajouter();
+if (test)
+        { //Actualiser
+
+        QMessageBox:: information(nullptr, QObject::tr("OK"),
+                                           QObject::tr("Ajout effectué\n"
+                                                       "click cancel to exit."),QMessageBox::Cancel);
+        }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Ajout non effectué.\n"
+                                          "click Cancel to exit."),QMessageBox::Cancel);
+}
+
+void MainWindow::on_Supprimer_clicked()
+{
+    Personnel p1;
+    p1.setcin(ui->L_cin_supp->text().toInt());
+    bool test=p1.supprimer(p1.getcin());
+    if (test)
+            { //Actualiser
+
+            QMessageBox:: information(nullptr, QObject::tr("OK"),
+                                               QObject::tr("supression effectué\n"
+                                                           "click cancel to exit."),QMessageBox::Cancel);
+            ui->tab_personnel->setModel((p.afficher()));
+            }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                                  QObject::tr("suppression non effectué.\n"
+                                              "click Cancel to exit."),QMessageBox::Cancel);
+
+}
+
+
+void MainWindow::on_pb_modifier_clicked()
+{
+    int cin = ui->line_cin ->text().toInt();
+    int telephone = ui->line_telephone ->text().toInt();
+    int dureeTravail = ui->line_dureeTravail->text().toInt();
+    int age = ui->line_age ->text().toInt();
+    QString adresse= ui->line_adresse->text();
+    QString adresseMail= ui->line_adresseMail->text();
+    QString nom= ui->line_nom->text();
+    QString prenom= ui->line_prenom->text();
+
+      Personnel p(telephone,dureeTravail,cin,age,adresse,adresseMail,nom,prenom);
+      bool test=p.modifier(age,cin,telephone,dureeTravail,nom,prenom,adresse,adresseMail);
+      if(test)
+    {
+
+          ui->tab_personnel->setModel(p.afficher());//refresh
+    QMessageBox::information(nullptr, QObject::tr("modifier une agence"),
+                      QObject::tr("Agence modifié.\n"
+                                  "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+      else
+          QMessageBox::critical(nullptr, QObject::tr("modifier une agence"),
+                      QObject::tr("Erreur !.\n"
+                                  "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+void MainWindow::on_p_trier_clicked()
+{
+   Personnel *p = new Personnel();
+   ui->tab_personnel->setModel(p->tri());
+
+
+}
+
+
+
+void MainWindow::sendMail()
+{
+    /*Mailing *mailing = new Mailing(ui->uname->text(), ui->paswd->text(), ui->server->text(), ui->port->text().toInt());*/
+    /*connect(mailing, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));*/
+
+    ui->tab_mail->setModel(p.afficher());
+
+  /*  mailing->sendMail(ui->uname->text(), ui->rcpt->text() , ui->subject->text(),ui->message->toPlainText());*/
+}
+
+void MainWindow::mailSent(QString status)
+{
+    if(status == "Message sent")
+        QMessageBox::warning( 0, tr( "Qt Simple Mailing fournisseur" ), tr( "Message envoyer!\n\n" ) );
+}
+
+void MainWindow::on_qrcodegen_clicked()
+{
+    int tabeq=ui->tab_personnel->currentIndex().row();
+           QVariant idd=ui->tab_personnel->model()->data(ui->tab_personnel->model()->index(tabeq,0));
+           QString id= idd.toString();
+           QSqlQuery qry;
+           qry.prepare("select * from PERSON where CIN=:id");
+           qry.bindValue(":CIN",id);
+           qry.exec();
+              QString  nom,prenom,adresse,adresseMail,age,dureeTravail,telephone,ide;
+
+
+           while(qry.next()){
+
+               id=qry.value(1).toString();
+               nom=qry.value(2).toString();
+               prenom=qry.value(3).toString();
+               age=qry.value(4).toString();
+               adresse=qry.value(5).toString();
+               adresseMail=qry.value(6).toString();
+               dureeTravail=qry.value(7).toString();
+               telephone=qry.value(8).toString();
+
+
+           }
+           ide=QString(id);
+                  ide="CIN:"+cin+"NOM:"+nom+"PRENOM:"+prenom,"ADRESSE:"+adresse,"ADRESSEMAIL:"+adresseMail,"TELEPHONE:"+telephone,"DUREETRAVAIL:"+dureeTravail,"AGE:"+age;
+           QrCode qr = QrCode::encodeText(ide.toUtf8().constData(), QrCode::Ecc::HIGH);
+
+           // Read the black & white pixels
+           QImage im(qr.getSize(),qr.getSize(), QImage::Format_RGB888);
+           for (int y = 0; y < qr.getSize(); y++) {
+               for (int x = 0; x < qr.getSize(); x++) {
+                   int color = qr.getModule(x, y);  // 0 for white, 1 for black
+
+                   // You need to modify this part
+                   if(color==0)
+                       im.setPixel(x, y,qRgb(254, 254, 254));
+                   else
+                       im.setPixel(x, y,qRgb(0, 0, 0));
+               }
+           }
+           im=im.scaled(200,200);
+           ui->la->setPixmap(QPixmap::fromImage(im));
+
+}
+

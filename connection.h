@@ -2,7 +2,8 @@
 #define CONNECTION_H
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QSqlQuery>
+#include <QSqlQuery>//rrrrrrrrrrrr
+
 
 class Connection
 {

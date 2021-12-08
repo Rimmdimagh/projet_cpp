@@ -3,8 +3,12 @@
 # Project created by QtCreator 2018-10-26T21:45:23
 #
 #-------------------------------------------------
-
 QT       += core gui sql
+QT       += core gui network
+QT  += network
+QT  += core gui charts
+QT  += printsupport
+QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,15 +29,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    feedback.cpp \
+    formation.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    matriel.cpp \
+    personnel.cpp \
+    qrcode.cpp \
+    smtp.cpp
 
 HEADERS += \
-    feedback.h \
+    dialog.h \
+    formation.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    matriel.h \
+    personnel.h \
+    qrcode.hpp \
+    smtp.h
 
 FORMS += \
         mainwindow.ui
@@ -42,3 +55,9 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    historique.txt
+
+RESOURCES += \
+    img.qrc
