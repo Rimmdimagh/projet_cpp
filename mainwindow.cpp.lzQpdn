@@ -1,0 +1,123 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "personnel.h"
+#include <QMessageBox>
+#include <QSqlQueryModel>
+#include "smtp.h"
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->tab_personnel->setModel(p.afficher());
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+void MainWindow::on_pb_Ajouter_clicked()
+{
+    int cin = ui->p_CIN->text().toInt();
+    QString prenom =ui->p_PRENOM->text();
+    QString nom=ui->p_NOM->text();
+    QString adresse= ui->p_ADRESSE->text();
+    QString adresseMail=ui->p_MAIL->text();
+    int telephone =ui->p_TELEPHONE->text().toInt();
+    int dureeTravail=ui->p_DUREE->text().toInt();
+     int age= ui->p_age->text().toInt();
+
+  Personnel P(cin,telephone,dureeTravail,age,nom,prenom,adresse,adresseMail);
+
+
+
+bool test=P.ajouter();
+if (test)
+        { //Actualiser
+
+        QMessageBox:: information(nullptr, QObject::tr("OK"),
+                                           QObject::tr("Ajout effectué\n"
+                                                       "click cancel to exit."),QMessageBox::Cancel);
+        }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Ajout non effectué.\n"
+                                          "click Cancel to exit."),QMessageBox::Cancel);
+}
+
+void MainWindow::on_Supprimer_clicked()
+{
+    Personnel p1;
+    p1.setcin(ui->L_cin_supp->text().toInt());
+    bool test=p1.supprimer(p1.getcin());
+    if (test)
+            { //Actualiser
+
+            QMessageBox:: information(nullptr, QObject::tr("OK"),
+                                               QObject::tr("supression effectué\n"
+                                                           "click cancel to exit."),QMessageBox::Cancel);
+            ui->tab_personnel->setModel((p.afficher()));
+            }
+        else
+            QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                                  QObject::tr("suppression non effectué.\n"
+                                              "click Cancel to exit."),QMessageBox::Cancel);
+
+}
+
+
+void MainWindow::on_pb_modifier_clicked()
+{
+    int cin = ui->line_cin ->text().toInt();
+    int telephone = ui->line_telephone ->text().toInt();
+    int dureeTravail = ui->line_dureeTravail->text().toInt();
+    int age = ui->line_age ->text().toInt();
+    QString adresse= ui->line_adresse->text();
+    QString adresseMail= ui->line_adresseMail->text();
+    QString nom= ui->line_nom->text();
+    QString prenom= ui->line_prenom->text();
+
+      Personnel p(telephone,dureeTravail,cin,age,adresse,adresseMail,nom,prenom);
+      bool test=p.modifier(age,cin,telephone,dureeTravail,nom,prenom,adresse,adresseMail);
+      if(test)
+    {
+
+          ui->tab_personnel->setModel(p.afficher());//refresh
+    QMessageBox::information(nullptr, QObject::tr("modifier une agence"),
+                      QObject::tr("Agence modifié.\n"
+                                  "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+      else
+          QMessageBox::critical(nullptr, QObject::tr("modifier une agence"),
+                      QObject::tr("Erreur !.\n"
+                                  "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+
+
+void MainWindow::on_p_trier_clicked()
+{
+   Personnel *p = new Personnel();
+   ui->tab_personnel->setModel(p->tri());
+
+
+}
+
+
+void MainWindow::on_email_6_clicked()
+{
+    /************************************SMTP******************************************************/
+                    smtp* smtp = new Smtp("khaled.turki@esprit.tn","", "smtp.gmail.com",465);
+                    connect (smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+                    QString objet=ui->objet->text();
+                    QString o=ui->description->text();
+                    QString email=ui->email_3->text();
+                    smtp->sendMail("donia.sarsar@esprit.tn", email , objet,o);
+    /***********************************************************************************************/
+}

@@ -1,0 +1,12 @@
+#include "personnel.h"
+
+Personnel::Personnel()
+{
+               //initialisation des variables //
+    cin=0;telephone=0;dateNaissance=0;dureeTravail=0;
+       nom="";prenom="";adresse="";adresseMail="";
+       
+       
+   
+       
+}

@@ -1,0 +1,46 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "personnel.h"
+#include <QMessageBox>
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+void MainWindow::on_pb_Ajouter_clicked()
+{
+    int cin= ui->p_CIN->text().toInt();
+      QString prenom=ui->p_PRENOM->text();
+    QString nom=ui->p_NOM->text();
+    QString adresse= ui->p_ADRESSE->text();
+    QString adresseMail=ui->p_MAIL->text();
+    int telephone =ui->p_telephone->text().toInt();
+    int dureetravail=ui->p_duree->text().toInt();
+    int dateNaissance= ui->p_dateNaissance->text().toInt();
+
+  Personnel P(cin,telephone,dureetravail,dateNaissance,nom,prenom,adresse,adresseMail);
+
+
+
+bool test=P.ajouter();
+if (test)
+        { //Actualiser
+
+        QMessageBox:: information(nullptr, QObject::tr("OK"),
+                                           QObject::tr("Ajout effectué\n"
+                                                       "click cancel to exit."),QMessageBox::Cancel);
+        }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Ajout non effectué.\n"
+                                          "click Cancel to exit."),QMessageBox::Cancel);
+}

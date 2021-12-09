@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Untitled-1.png</file>
+        <file>ajouter.png</file>
+        <file>rechercher.png</file>
+        <file>reset.png</file>
+        <file>supprimer.png</file>
+        <file>affecter.png</file>
+        <file>modifier.png</file>
+        <file>reafficher.png</file>
+        <file>send.png</file>
+        <file>statistique.png</file>
+        <file>diconnexion.png</file>
+        <file>quitter.png</file>
+        <file>trie.png</file>
+        <file>import.png</file>
+        <file>inserer.png</file>
+        <file>users.png</file>
+        <file>candidat.png</file>
+        <file>candidature.png</file>
+        <file>canfiguration.png</file>
+        <file>dacebook.png</file>
+        <file>feedb.png</file>
+        <file>For.png</file>
+        <file>maint.png</file>
+        <file>per.png</file>
+        <file>logo.jpg</file>
+        <file>acceuil.png</file>
+    </qresource>
+</RCC>

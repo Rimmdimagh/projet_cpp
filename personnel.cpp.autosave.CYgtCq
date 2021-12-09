@@ -1,0 +1,171 @@
+#include "personnel.h"
+#include <QSqlQuery>
+#include<QtDebug>
+#include<QObject>
+Personnel::Personnel()
+{
+               //initialisation des variables //
+    cin=0;telephone=0;dateNaissance=0;dureeTravail=0;
+       nom="";prenom="";adresse="";adresseMail="";
+}
+
+Personnel::Personnel(int cin,int telephone ,int dateNaissance,int dureeTravail ,QString nom,QString prenom ,QString adresse ,QString adresseMail)
+     {
+         this ->cin=cin ;
+         this ->telephone=telephone;
+         this ->dateNaissance=dateNaissance ;
+         this ->dureeTravail=dureeTravail ;
+
+         this -> nom=nom ;
+         this-> prenom=prenom ;
+         this ->adresse=adresse;
+         this ->adresseMail=adresseMail ;
+
+     }
+
+     int  Personnel ::getcin()
+     {
+         return cin ;
+     }
+     int  Personnel ::gettelephone()
+     {
+         return telephone ;
+     }
+     int Personnel ::getdateNaissance()
+     {
+         return dateNaissance;
+     }
+     int Personnel ::getdureeTravail()
+     {
+         return dureeTravail ;
+     }
+     QString Personnel :: getnom()
+     {
+         return nom ;
+     }
+     QString Personnel ::getprenom()
+     {
+         return prenom ;
+
+     }
+     QString Personnel ::getadresse()
+     {
+         return adresse ;
+     }
+     QString Personnel :: getadresseMail()
+     {
+         return adresseMail ;
+     }
+
+
+     void Personnel :: setcin(int cin)
+     {
+         this ->cin=cin;
+     }
+     void Personnel :: settelephone(int telephone)
+    {
+        this ->telephone=telephone;
+    }
+     void Personnel ::setdateNaissance(int dateNaissance)
+     {
+         this->dateNaissance = dateNaissance;
+     }
+     void Personnel ::setdureeTravail(int dureeTravail)
+     {
+         this-> dureeTravail=dureeTravail;
+     }
+     void Personnel ::setnom(QString nom)
+     {
+         this ->nom=nom;
+     }
+     void Personnel ::setprenom(QString prenom)
+     {
+         this -> prenom=prenom;
+     }
+     void Personnel ::setadresse(QString adresse)
+     {
+         this ->adresse=adresse;
+     }
+     void Personnel ::setadresseMail(QString adresseMail)
+     {
+         this -> adresseMail=adresseMail ;
+     }
+     bool Personnel::ajouter()
+     {
+
+         QSqlQuery query;
+               query.prepare("INSERT INTO PERSON (cin,nom,prenom,adresse,adresseMail,telephone,dureeTravail,dateNaissance)"
+                             "VALUES (:cin, :nom, :prenom , :adresse ,:adresseMail,:telephone,:dureeTravail,:dateNaissance)");
+               QString  cin_string= QString::number(cin);
+               QString  dateNaissance_string= QString::number(dateNaissance);
+               QString  telephone_string= QString::number(telephone);
+               QString  dureeTravail_string= QString::number(dureeTravail);
+
+
+               query.bindValue(":cin", cin);
+               query.bindValue(":nom", nom);
+               query.bindValue(":prenom", prenom);
+               query.bindValue(":adresse", adresse);
+               query.bindValue(":adresseMail", adresseMail);
+               query.bindValue(":telephone", telephone);
+               query.bindValue(":dureeTravail", dureeTravail);
+               query.bindValue(":dateNaissance", dateNaissance);
+
+
+
+
+
+
+
+              return query.exec();
+
+
+
+
+     }
+     QSqlQueryModel * Personnel::afficher()
+     {
+
+         QSqlQueryModel *model = new QSqlQueryModel;
+         model->setQuery("SELECT* FROM person");
+         model->setHeaderData(0, Qt::Horizontal, QObject:: tr("cin"));
+         model->setHeaderData(1, Qt::Horizontal, QObject::tr("prenom"));
+         model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
+         model->setHeaderData(3, Qt::Horizontal, QObject::tr("adresse"));
+         model->setHeaderData(4, Qt::Horizontal, QObject::tr("adresseMail"));
+         model->setHeaderData(5, Qt::Horizontal, QObject::tr("telephone"));
+         model->setHeaderData(6, Qt::Horizontal, QObject::tr("dureeTravail"));
+         model->setHeaderData(7, Qt::Horizontal, QObject::tr("dateNaissance"));
+        return model;
+    }
+
+     bool Personnel::supprimer(int cin)
+     {
+         QSqlQuery query;
+               query.prepare("delete from PERSON where cin=:cin");
+               query.bindValue(0, cin);
+               return query.exec();
+     }
+
+     bool Personnel::modifier(int cin ,int telephone,int dureeTravail,QString adresse,QString adresseMail)
+     {
+     QSqlQuery query;
+      QString res0= QString::number(cin);
+     QString res= QString::number(telephone);
+      QString res1= QString::number(dureeTravail);
+
+     query.prepare("Update PERSON set NOM = :nom , PRENOM = :prenom , ADRESSE = :adresse , ADRESSEMAIL = adresseMail , TELEPHONE=telephone , DUREETRAVAIl=dureeTravail , DATENAISSANCE=dateNaissance  where CIN = :cin ");
+     query.bindValue(":cin", res0);
+     query.bindValue(":telephone", res1);
+     query.bindValue(":adresse", adresse);
+     query.bindValue(":adresseMail",adresseMail);
+     query.bindValue(":telephone", telephone);
+     query.bindValue(":nom", nom);
+     query.bindValue(":prenom", prenom);
+     query.bindValue(":dureeTravail", dureeTravail);
+
+
+
+
+     return    query.exec();
+     }
